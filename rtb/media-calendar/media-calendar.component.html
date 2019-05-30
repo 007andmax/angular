@@ -1,0 +1,224 @@
+<div class="media-fon m--fade" [ngStyle]="{display:display}">
+    <div class="media-fon-closed"></div>
+    <h3>Media calendar setup for: <span *ngIf="categori" [textContent]="categori.title"></span></h3>
+    <div class="add-product-media">
+        <div class="add-product-body">
+            <input type="text" placeholder="Add the product" [(ngModel)]="ProductName" />
+            <button class="add-product-media-btn">Add</button>
+        </div>
+
+        <button class="next-step">Go to Next Step</button>
+        <button class="back-step">Go back</button>
+        <button class="finish-step">Finish</button>
+    </div>
+    <div class="expense-body" [ngStyle]="{display: (listMedia.length > 0) ? 'block' : 'none'}">
+        <div class="products-list">
+            <ng-template ngFor let-item [ngForOf]="listMedia" let-i="index" [ngForTrackBy]="trackByIndex">
+                   
+                <ng-template ngFor let-Subitem [ngForOf]="listMedia[i].campaigns" let-u="index" [ngForTrackBy]="trackByIndex">
+
+                    <div class="item-product" [attr.index-product]="i" [attr.index-expense]="u">
+                        <div class="product-info">
+                            <h3 [textContent]="'Product name: ' + listMedia[i].productName"></h3>
+                            <p [textContent]="'Campaign: ' + listMedia[i].campaigns[u].campaign"></p>
+                            <span class="add-compaign-show">Add Campaign</span>
+                            <span class="remove-compaign" (click)="removeCompaign(i,u)" *ngIf="listMedia[i].campaigns.length > 1"> \ Remove Campaign</span>
+                            <div class="add-compaign">
+                                <input type="text" [(ngModel)]="CampaignName" />
+                                <button (click)="AddCompaign(i)">Add</button>
+                                <span (click)="ClosedAddCompaign($event)" class="closed-add-compaign"></span>
+                            </div>
+                        </div>
+                        <div class="product-settings">
+                            <ng-template ngFor let-flightDate [ngForOf]="listMedia[i].campaigns[u].flightDate" let-d="index" [ngForTrackBy]="trackByIndex">
+                                <div class="flightDate">
+                                    <div class="flightDate-info">
+                                        <p class="head">Flight Date</p>
+                                        <p class="dates" [textContent]="getFlightDateStart(listMedia[i].campaigns[u].flightDate[d]) + ' - ' + getFlightDateEnd(listMedia[i].campaigns[u].flightDate[d])"></p>
+                                        <span (click)="EditFlightDate(i,u,d,$event)"></span>
+                                    </div>
+                                    <div class="budget-info-item">
+                                        <p>Planned Budget</p>
+                                        <input type="number" class="number-value" [(ngModel)]="listMedia[i].campaigns[u].flightDate[d].targetBudget" />
+                                    </div>
+                                    <div class="budget-info-item">
+                                        <p>Actual Budget</p>
+                                        <input type="number" class="number-value" [(ngModel)]="listMedia[i].campaigns[u].flightDate[d].actualBudget" />
+                                    </div>
+                                    <div class="budget-info-item">
+                                        <p>Total Spots</p>
+                                        <input type="number" class="number-value" [(ngModel)]="listMedia[i].campaigns[u].flightDate[d].spots" />
+                                    </div>
+                                    <div class="budget-info-item">
+                                        <p>GRP</p>
+                                        <input type="text" class="number-value grp" [(ngModel)]="listMedia[i].campaigns[u].flightDate[d].grp" />
+                                    </div>
+                                    <!--<button class="save-flightDate">Save</button>-->
+                                    <div class="remove" (click)="RemoveFlightDate(i,u,d)" *ngIf="listMedia[i].campaigns[u].flightDate.length > 1"></div>
+                                </div>
+
+                            </ng-template>
+                            <div class="add-flightDate">
+                                <button (click)="AddFlightDate(i,u)">+ Add flight date</button>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                </ng-template>
+                <div class="remove-product">
+                    <button (click)="removeProduct(i)">Remove Product</button>
+                </div>
+                <hr>
+            </ng-template>
+        </div>
+        <div class="dealers" tabindex="0">
+               
+            <div class="shadow-line"></div>
+            <table id="pruebatabla" class="fht-table" *ngIf="showDealers">
+                <thead>
+                    <tr>
+                        <th class="celda_encabezado_general product_head">
+                            <p class="product_head-first">Products</p>
+                        </th>
+                        <ng-template ngFor let-rooftop [ngForOf]="dealerShips" let-d="index" [ngForTrackBy]="trackByIndex">
+                          
+                            <th class="celda_encabezado_general dealer_head" [ngClass]="(!dealerShips[d].active) ? 'dealer_head_no_active' : ''">
+                                   
+                                <div class="dealer-item" [ngClass]="(d > 0) ? 'dealer-item-clear-border' : ''">
+                                    <div class="switch-dealer" >
+                                        <label>
+                                                <input type="checkbox" class="switch-checkbox" [attr.index]="d"  [checked]="dealerShips[d].active"/>
+                                                Enabled
+
+                                        </label>
+                                        
+                                      
+                                    </div>
+                                    <div class="dealer-item-head">
+                                        <h3 [textContent]="dealerShips[d].title"></h3>
+                                    </div>
+                                    <div class="dealer-item-body">
+                                        <div class="dealer-item-body-title dealer-item-body-line">
+                                            <p>Dealerships %</p>
+                                        </div>
+                                        <div class="dealer-item-body-title dealer-item-body-line">
+                                            <p>Planned<br/>Amount</p>
+                                        </div>
+                                        <div class="dealer-item-body-title dealer-item-body-line">
+                                            <p>Actual<br/>Amount</p>
+                                        </div>
+                                        <div class="dealer-item-body-title">
+                                            <p>CO-OP</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </th>
+
+                        </ng-template>
+                    </tr>
+
+
+                </thead>
+                <tbody>
+                    <ng-template ngFor let-item [ngForOf]="listMedia" let-i="index" [ngForTrackBy]="trackByIndex" let-last="last">
+                        <tr class="product_line_bottom">
+
+                            <td class="celda_normal product_line">
+
+                                <p [textContent]="listMedia[i].productName"> </p>
+
+                            </td>
+                            <ng-template ngFor let-rooftop [ngForOf]="dealerShips" let-d="index" [ngForTrackBy]="trackByIndex">
+                                <td class="celda_normal dealerShips-item">
+                                    <div class="dealerShips-item-up">
+                                        <div class="dealer-item-fon"></div>
+                                        <div class="dealer-item-fon"></div>
+                                        <div class="dealer-item-fon"></div>
+                                        <div class="dealer-item-fon"></div>
+                                    </div>
+                                </td>
+                            </ng-template>
+                        </tr>
+
+                        <ng-template ngFor let-campaign [ngForOf]="listMedia[i].campaigns" let-u="index" [ngForTrackBy]="trackByIndex" let-last="lastC">
+
+                            <tr class="product_line_bottom">
+                                <td class="celda_normal campaigns_line">
+
+
+                                    <span class="list-products-campaigns" [textContent]="listMedia[i].campaigns[u].campaign"></span>
+
+                                </td>
+                                <ng-template ngFor let-item [ngForOf]="listMedia[i].campaigns[u].dealerShips" let-h="index" [ngForTrackBy]="trackByIndex">
+
+                                    <td class="celda_normal data_line" [ngClass]="(!listMedia[i].campaigns[u].dealerShips[h].active) ? 'dealer_head_no_active' : ''">
+                                        <div class="dealer-item">
+
+                                            <div class="dealer-item-body">
+
+                                                <div class="dealer-item-body-product" [attr.index-product]="i" [attr.index-dealership]="h" [attr.index-campaign]="u">
+                                                    <div class="dealer-item-fon">
+                                                        <input class="targetBudgetPercent" type="number" [(ngModel)]="listMedia[i].campaigns[u].dealerShips[h].targetBudgetPercent"
+                                                        />
+                                                    </div>
+                                                    <div class="dealer-item-fon">
+                                                        <p [textContent]="listMedia[i].campaigns[u].dealerShips[h].budget"></p>
+                                                    </div>
+                                                    <div class="dealer-item-fon dealer-item-actual-budget">
+                                                        <p [textContent]="listMedia[i].campaigns[u].dealerShips[h].actualBudget"></p>
+                                                    </div>
+                                                    <div class="dealer-item-fon">
+                                                        <input class="coopPercent" type="number" [(ngModel)]="listMedia[i].campaigns[u].dealerShips[h].coopPercent" />
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                </ng-template>
+
+
+
+                            </tr>
+                        </ng-template>
+
+                        {{ last === true ? callOnLastIteration() : null}}
+                    </ng-template>
+                 
+                </tbody>
+            </table>
+            
+        </div>
+
+    </div>
+    <div class="edit-flight-date-modal">
+        <div class="cursore-modal"></div>
+        <div class="edit-flight-date-weeks">
+            <ng-template ngFor let-item [ngForOf]="weeks" let-u="index" [ngForTrackBy]="trackByIndex">
+                <span [textContent]="item"></span>
+            </ng-template>
+            <div class="edit-flight-date-days">
+                <ng-template ngFor let-item [ngForOf]="editMode.daysMonth" let-u="index" [ngForTrackBy]="trackByIndex">
+                    <span [textContent]="item.label" [ngClass]="item.selected" (click)="SelectNewDate(u)"></span>
+                </ng-template>
+            </div>
+        </div>
+        <div class="edit-btns">
+            <div class="edit-btns-update">
+
+            </div>
+            <div class="edit-btns-apply">
+                <span>Apply dates</span>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-edit-mask"></div>
+    <div class="preloader-mini-fon"></div>
+    <div class="preloader-mini"></div>
+</div>

@@ -1,0 +1,440 @@
+<div class="info-fon" [ngStyle]="{display: display}" [@moveAnimation]="move">
+  <div class="info-fon-body">
+    <div class="info-fon-left">
+
+      <div class="info-fon-flightdates">
+        <h3 *ngIf="editMode.settings && editMode.settings.viewType === 'daysOfMonth'" [textContent]="months[getMonth()] + '  flight dates:'"></h3>
+        <h3 *ngIf="editMode.settings && editMode.settings.viewType === 'monthsOfYear'" [textContent]="editMode.settings.year +' year flight dates:'"></h3>
+        <h3 *ngIf="editMode.settings && editMode.settings.viewType === 'monthsOfQuarter'" [textContent]="quarters[editMode.settings.quarter - 1]"></h3>
+        <div class="info-fon-flightdates-body" *ngIf="listExpenses.length !== 0 && editMode.settings &&  editMode.settings.viewType === 'daysOfMonth'">
+          <ng-template ngFor let-item [ngForOf]="listExpenses[expenseIndex].flightDate" let-i="index" [ngForTrackBy]="trackByIndex"
+            let-last="last">
+            <div class="flight-date-item" [ngClass]="(editMode.flightDateIndex === i) ? 'selected-item' : ''">
+              <div class="edit-zone" (click)="EditFlightDate(i)">
+                <div class="start-flight" (click)="selectFlightDate(i)">
+                  <span [textContent]="getFlightDateStart(item)"></span>
+                </div>
+                <div class="end-flight" [ngClass]="(editMode.defaultValEditDate.addDate && editMode.flightDateIndex === i) ? 'disabled-end-flight' : '' "
+                  (click)="selectFlightDate(i)">
+                  <span [textContent]="getFlightDateEnd(item)"></span>
+                </div>
+
+                <span class="info-price" (click)="selectFlightDate(i)">{{ item.targetBudget | pricetext }}</span>
+                <p class="percentages" [ngStyle]="{display :(listExpenses[expenseIndex].flightDate.length > 1 && listExpenses[expenseIndex].targetBudget > 0) ? 'table-cell' : 'none'}"
+                  [textContent]="item.percent + '%'"></p>
+              </div>
+              <div class="edit-mode" [ngClass]="(editMode.flightDateIndex === i) ? 'selected-item-edit' : ''" [ngStyle]="{display: (rights.canManageOwnBudgets === 1) ? 'table-cell' : 'none'}">
+
+                <div class="delete" [ngClass]="(listExpenses[expenseIndex].flightDate.length === 1) ? 'disabled-delete' : ''" (click)="RemoveFlightDate(i)">
+
+                </div>
+              </div>
+            </div>
+            {{ last === true ? callOnLastIterationFlightDate() : null}}
+          </ng-template>
+        </div>
+        <div class="info-fon-flightdates-body" *ngIf="listExpenses.length !== 0 && editMode.settings.viewType === 'monthsOfQuarter' || listExpenses.length !== 0 && editMode.settings.viewType === 'monthsOfYear'">
+          <ng-template ngFor let-item [ngForOf]="listExpenses" let-i="index" [ngForTrackBy]="trackByIndex">
+            <div class="month-expense" *ngIf="listExpenses.length > 1">
+              <p [textContent]="months[item.flightDate[0].start.month - 1] + ':'"></p>
+            </div>
+            <ng-template ngFor let-itemExpense [ngForOf]="item.flightDate" let-u="index" [ngForTrackBy]="trackByIndex">
+              <div class="flight-date-item" [ngClass]="(expenseIndex === i && editMode.flightDateIndex === u) ? 'selected-item' : ''">
+                <div class="edit-zone" (click)="EditFlightDate(u,i)">
+                  <div class="start-flight" >
+                    <span [textContent]="getFlightDateStart(itemExpense)"></span>
+                  </div>
+                  <div class="end-flight" >
+                    <span [textContent]="getFlightDateEnd(itemExpense)"></span>
+                  </div>
+
+                  <span class="info-price" >{{ itemExpense.targetBudget | pricetext }}</span>
+                  <p class="percentages" [ngStyle]="{display :(editMode.showProcent) ? 'table-cell' : 'none'}" [textContent]="(item.targetBudget > 0) ? itemExpense.percent + '%' : '-'"></p>
+                </div>
+                <div class="edit-mode" [ngClass]="(expenseIndex === i && editMode.flightDateIndex === u) ? 'selected-item-edit' : ''" [ngStyle]="{display: (rights.canManageOwnBudgets === 1) ? 'table-cell' : 'none'}">
+
+                  <div class="delete" (click)="RemoveFlightDate(u,i)">
+
+
+
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ng-template>
+        </div>
+
+      </div>
+      <div class="add-graph" (click)="addFlightDate()" [hidden]="rights.canManageOwnBudgets === 0">
+        <svg stroke-width="0.501" stroke-linejoin="bevel" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+          version="1.1" overflow="visible" width="36pt" height="36pt" viewBox="0 0 36 36">
+          <defs>
+            <marker id="DefaultArrow2" markerUnits="strokeWidth" viewBox="0 0 1 1" markerWidth="1" markerHeight="1" overflow="visible"
+              orient="auto">
+
+              <g transform="scale(0.0092592592)">
+
+                <path d="M -9 54 L -9 -54 L 117 0 z" /> </g>
+            </marker>
+            <marker id="DefaultArrow3" markerUnits="strokeWidth" viewBox="0 0 1 1" markerWidth="1" markerHeight="1" overflow="visible"
+              orient="auto">
+
+              <g transform="scale(0.0092592592)">
+                <path d="M -27 54 L -9 0 L -27 -54 L 135 0 z" /> </g>
+            </marker>
+            <marker id="DefaultArrow4" markerUnits="strokeWidth" viewBox="0 0 1 1" markerWidth="1" markerHeight="1" overflow="visible"
+              orient="auto">
+
+              <g transform="scale(0.0092592592)">
+                <path d="M -9,0 L -9,-45 C -9,-51.708 2.808,-56.580 9,-54 L 117,-9 C 120.916,-7.369 126.000,-4.242 126,0 C 126,4.242 120.916,7.369 117,9 L 9,54 C 2.808,56.580 -9,51.708 -9,45 z"
+                /> </g>
+            </marker>
+            <marker id="DefaultArrow5" markerUnits="strokeWidth" viewBox="0 0 1 1" markerWidth="1" markerHeight="1" overflow="visible"
+              orient="auto">
+
+              <g transform="scale(0.0092592592)">
+                <path d="M -54, 0 C -54,29.807 -29.807,54 0,54 C 29.807,54 54,29.807 54,0 C 54,-29.807 29.807,-54 0,-54 C -29.807,-54 -54,-29.807 -54,0 z"
+                /> </g>
+            </marker>
+            <marker id="DefaultArrow6" markerUnits="strokeWidth" viewBox="0 0 1 1" markerWidth="1" markerHeight="1" overflow="visible"
+              orient="auto">
+
+              <g transform="scale(0.0092592592)">
+                <path d="M -63,0 L 0,63 L 63,0 L 0,-63 z" /> </g>
+            </marker>
+            <marker id="DefaultArrow7" markerUnits="strokeWidth" viewBox="0 0 1 1" markerWidth="1" markerHeight="1" overflow="visible"
+              orient="auto">
+
+              <g transform="scale(0.0092592592)">
+                <path d="M 18,-54 L 108,-54 L 63,0 L 108,54 L 18, 54 L -36,0 z" /> </g>
+            </marker>
+            <marker id="DefaultArrow8" markerUnits="strokeWidth" viewBox="0 0 1 1" markerWidth="1" markerHeight="1" overflow="visible"
+              orient="auto">
+
+              <g transform="scale(0.0092592592)">
+                <path d="M -36,0 L 18,-54 L 54,-54 L 18,-18 L 27,-18 L 63,-54 L 99,-54 L 63,-18 L 72,-18 L 108,-54 L 144,-54 L 90,0 L 144,54 L 108,54 L 72,18 L 63,18 L 99,54 L 63,54 L 27,18 L 18,18 L 54,54 L 18,54 z"
+                /> </g>
+            </marker>
+            <marker id="DefaultArrow9" markerUnits="strokeWidth" viewBox="0 0 1 1" markerWidth="1" markerHeight="1" overflow="visible"
+              orient="auto">
+
+              <g transform="scale(0.0092592592)">
+                <path d="M 0,45 L -45,0 L 0, -45 L 45, 0 z M 0, 63 L-63, 0 L 0, -63 L 63, 0 z" /> </g>
+            </marker>
+            <filter id="StainedFilter">
+              <feBlend mode="multiply" in2="BackgroundImage" in="SourceGraphic" result="blend" />
+              <feComposite in="blend" in2="SourceAlpha" operator="in" result="comp" /> </filter>
+            <filter id="BleachFilter">
+              <feBlend mode="screen" in2="BackgroundImage" in="SourceGraphic" result="blend" />
+              <feComposite in="blend" in2="SourceAlpha" operator="in" result="comp" /> </filter>
+            <filter id="InvertTransparencyBitmapFilter">
+              <feComponentTransfer>
+                <feFuncR type="gamma" amplitude="1.055" exponent=".416666666" offset="-0.055" />
+                <feFuncG type="gamma" amplitude="1.055" exponent=".416666666" offset="-0.055" />
+                <feFuncB type="gamma" amplitude="1.055" exponent=".416666666" offset="-0.055" /> </feComponentTransfer>
+              <feComponentTransfer>
+                <feFuncR type="linear" slope="-1" intercept="1" />
+                <feFuncG type="linear" slope="-1" intercept="1" />
+                <feFuncB type="linear" slope="-1" intercept="1" />
+                <feFuncA type="linear" slope="1" intercept="0" /> </feComponentTransfer>
+              <feComponentTransfer>
+                <feFuncR type="gamma" amplitude="1" exponent="2.4" offset="0" />
+                <feFuncG type="gamma" amplitude="1" exponent="2.4" offset="0" />
+                <feFuncB type="gamma" amplitude="1" exponent="2.4" offset="0" /> </feComponentTransfer>
+            </filter>
+          </defs>
+          <g id="Document" fill="none" stroke="black" font-family="Times New Roman" font-size="16" transform="scale(1 -1)">
+            <g id="Spread" transform="translate(0 -36)">
+              <g id="Layer 1 (2)">
+                <g id="Group" fill-rule="evenodd" stroke="none" stroke-width="0.5" stroke-miterlimit="79.8403193612775">
+                  <path d="M 4.489,18.373 C 4.489,21.48 7.01,24.002 10.117,24.002 L 25.864,24.002 C 28.97,24.002 31.492,21.48 31.492,18.373 C 31.492,17.413 31.25,16.507 30.824,15.714 C 30.628,15.35 30.173,15.213 29.808,15.409 C 29.444,15.605 29.307,16.06 29.503,16.425 C 29.815,17.004 29.992,17.666 29.992,18.373 C 29.992,20.651 28.141,22.502 25.864,22.502 L 10.117,22.502 C 7.839,22.502 5.989,20.651 5.989,18.373 C 5.989,16.095 7.839,14.245 10.117,14.245 L 22.517,14.245 C 22.93,14.245 23.267,13.908 23.267,13.495 C 23.267,13.081 22.93,12.745 22.517,12.745 L 10.117,12.745 C 7.01,12.745 4.489,15.266 4.489,18.373 Z"
+                    fill="#f68a1e" marker-start="none" marker-end="none" />
+                  <path d="M 21.738,12.748 C 21.738,15.647 24.091,18.001 26.991,18.001 C 29.89,18.001 32.244,15.647 32.244,12.748 C 32.244,9.848 29.89,7.495 26.991,7.495 C 24.091,7.495 21.738,9.848 21.738,12.748 Z M 30.744,12.748 C 30.744,14.818 29.061,16.501 26.991,16.501 C 24.92,16.501 23.238,14.818 23.238,12.748 C 23.238,10.677 24.92,8.995 26.991,8.995 C 29.061,8.995 30.744,10.677 30.744,12.748 Z M 26.241,10.489 L 26.241,11.998 L 24.732,11.998 C 24.318,11.998 23.982,12.334 23.982,12.748 C 23.982,13.161 24.318,13.498 24.732,13.498 L 26.241,13.498 L 26.241,15.007 C 26.241,15.42 26.577,15.757 26.991,15.757 C 27.404,15.757 27.741,15.42 27.741,15.007 L 27.741,13.498 L 29.25,13.498 C 29.663,13.498 30,13.161 30,12.748 C 30,12.334 29.663,11.998 29.25,11.998 L 27.741,11.998 L 27.741,10.489 C 27.741,10.075 27.404,9.739 26.991,9.739 C 26.577,9.739 26.241,10.075 26.241,10.489 Z"
+                    fill="#ffffff" marker-start="none" marker-end="none" /> </g>
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="info-fon-right">
+      <div class="info-fon-photo">
+        <div class="google-disk">
+          <img src="assets/img/edit/Google-Drive-icon.png" />
+        </div>
+        <div class="info-fon-photo-body-fon">
+          <div class="info-fon-photo-body" [ngClass]="(editMode.preloader) ? 'info-fon-photo-body-upload' : ''">
+            <div class="back-after-add-files">
+              <span>Back</span>
+            </div>
+            <div class="info-fon-photo-no-hover">
+
+              <img class="no-photo-edit" [ngStyle]="{display:(rights.canManageOwnBudgets === 1) ? 'block' : 'none'}" src="assets/img/edit/edit-photo-info-expense.svg"
+              />
+              <img class="no-photo" src="assets/img/no-photo.svg" [ngStyle]="{display:(rights.canManageOwnBudgets === 0) ? 'block' : 'none'}"
+              />
+
+            </div>
+            <div class="info-fon-photo-hover">
+              <img class="no-photo-edit" src="assets/img/edit/edit-photo-info-expense.svg" />
+
+              <p>Drag and drop image or video file here.
+                <br> or
+                <br> Click to browse by browser</p>
+            </div>
+            <div class="progrees-upload-expense-files" [ngStyle]="{display: (editMode.preloader) ? 'table' : 'none'}">
+              <p></p>
+              <span class="progrees-upload-size"></span>
+
+              <div class="progree-bar-expense">
+                <div class="uploaded-buty"></div>
+
+              </div>
+              <div class="complete-upload" [hidden]="!editMode.uploadFileData.complete">
+                <span [hidden]="editMode.error">Save</span>
+                <span [hidden]="!editMode.error">Back</span>
+              </div>
+            </div>
+            <form action="/api/expense/file-upload" [hidden]="rights.canManageOwnBudgets === 0" class="dropzone" enctype="multipart/form-data">
+
+            </form>
+
+          </div>
+        </div>
+
+        <div class="fotorama-fon" [ngStyle]="{display:ShowFile.display,width : getWidthContainerPhoto()}">
+
+
+          <div id="slider-files" class="fotorama" data-click="false" data-nav="false" data-width="290" data-height="430" *ngIf="ListCreative.length !== 0 && ListCreative[expenseIndex] && ListCreative[expenseIndex].length > 1 && listExpenses[expenseIndex].folders.length !== 0 && listExpenses[expenseIndex].folders[indexFolder].files.length === 0">
+            <ng-template ngFor let-item [ngForOf]="ListCreative[expenseIndex]" let-last="last">
+
+              <div [attr.id]="item.id" class="fotorama-item" [ngStyle]="{ width : getWidthContainerPhoto()}">
+                <iframe [attr.id]="item.id" class="slider-item-document-body" [attr.data-url]="getStringUrl(item.id)" height="430" [ngStyle]="{ width : getWidthContainerPhoto()}"></iframe>
+
+              </div>
+
+
+              {{ last === true ? callOnLastIteration() : null}}
+            </ng-template>
+
+          </div>
+          <div id="slider-files" [ngStyle]="{ width : getWidthContainerPhoto()}" *ngIf="ListCreative.length !== 0 && ListCreative[expenseIndex] && ListCreative[expenseIndex].length === 0 && listExpenses.length !== 0 && listExpenses[expenseIndex].folders.length !== 0 && listExpenses[expenseIndex].folders[indexFolder].files.length > 1">
+            <ng-template ngFor let-item [ngForOf]="listExpenses[expenseIndex].folders[indexFolder].files" let-last="last">
+              <div [attr.id]="item.fileId" class="slider-item-files" *ngIf="item.type === 'document'" [ngStyle]="{ width : getWidthContainerPhoto()}">
+                <iframe [attr.id]="item.fileId" *ngIf="item.extension !== 'pptx' && item.extension !== 'ppt' && item.extension !== 'xls' && item.extension !== 'xlsx'" [attr.data-url]="item.url" class="slider-item-document-body" height="430" [ngStyle]="{ width : getWidthContainerPhoto()}"></iframe>
+                <a id="documentEmbed"  class="link-pptx" [attr.href]="item.url" *ngIf="item.type === 'document' && item.extension === 'pptx' || item.type === 'document' && item.extension === 'ppt' || item.type === 'document' && item.extension === 'xls' || item.type === 'document' && item.extension === 'xlsx'" download [textContent]="'Download file.' + item.extension"></a>
+        
+              </div>
+              <div [attr.id]="item.fileId" class="slider-item-files" *ngIf="item.type === 'video'" [ngStyle]="{ width : getWidthContainerPhoto()}">
+                <div class="slider-item-video">
+                  <video [attr.id]="'video-'+item.fileId" [ngStyle]="{ width : getWidthContainerPhoto()}" controls="controls">
+                    <source [src]="getUrl(item.url)" [attr.width]="widthPhoto">
+                  </video>
+                </div>
+              </div>
+              <div [attr.id]="item.fileId" class="slider-item-files-img" *ngIf="item.type === 'image'" [ngStyle]="{ width : getWidthContainerPhoto()}">
+                <img [src]="getUrl(item.url)">
+              </div>
+              {{ last === true ? callOnLastIteration() : null}}
+            </ng-template>
+          </div>
+
+          <div class="table_object__creative_item_one" *ngIf="ListCreative.length !== 0 && ListCreative[expenseIndex] && ListCreative[expenseIndex].length === 1"
+            [ngStyle]="{ width : getWidthContainerPhoto()}">
+
+            <iframe id="documentEmbed" height="430" [ngStyle]="{ width : getWidthContainerPhoto()}" *ngIf="listExpenses[expenseIndex].folders[indexFolder].files[0].extension !== 'pptx' && listExpenses[expenseIndex].folders[indexFolder].files[0].extension !== 'ppt'"></iframe>
+    
+            {{ callOnLastIterationOne()}}
+
+          </div>
+          <div class="table_object__creative_item_one" [ngStyle]="{ width : getWidthContainerPhoto()}" *ngIf="listExpenses.length !== 0 && listExpenses[expenseIndex].folders.length !== 0 &&  listExpenses[expenseIndex].folders[indexFolder].files.length === 1">
+       <iframe *ngIf="listExpenses[expenseIndex].folders[indexFolder].files[0].type === 'document'  && listExpenses[expenseIndex].folders[indexFolder].files[0].extension !== 'pptx' && listExpenses[expenseIndex].folders[indexFolder].files[0].extension !== 'ppt' && listExpenses[expenseIndex].folders[indexFolder].files[0].extension !== 'xls' && listExpenses[expenseIndex].folders[indexFolder].files[0].extension !== 'xlsx'" id="documentEmbed" height="430" [ngStyle]="{ width : getWidthContainerPhoto()}"></iframe>
+     <!--   <embed  *ngIf="listExpenses[expenseIndex].folders[indexFolder].files[0].type === 'document' && listExpenses[expenseIndex].folders[indexFolder].files[0].extension !== 'pptx'" id="documentEmbed" height="430" [ngStyle]="{ width : getWidthContainerPhoto()}"> -->
+          <a id="documentEmbed"  class="link-pptx" [attr.href]="listExpenses[expenseIndex].folders[indexFolder].files[0].url" *ngIf="listExpenses[expenseIndex].folders[indexFolder].files[0].type === 'document' && listExpenses[expenseIndex].folders[indexFolder].files[0].extension === 'pptx' || listExpenses[expenseIndex].folders[indexFolder].files[0].type === 'document' && listExpenses[expenseIndex].folders[indexFolder].files[0].extension === 'ppt' || listExpenses[expenseIndex].folders[indexFolder].files[0].type === 'document' && listExpenses[expenseIndex].folders[indexFolder].files[0].extension === 'xls' || listExpenses[expenseIndex].folders[indexFolder].files[0].type === 'document' && listExpenses[expenseIndex].folders[indexFolder].files[0].extension === 'xlsx'" download [textContent]="'Download file.' + listExpenses[expenseIndex].folders[indexFolder].files[0].extension"></a>
+           <video *ngIf="listExpenses[expenseIndex].folders[indexFolder].files[0].type === 'video'" [attr.id]="listExpenses[expenseIndex].folders[indexFolder].files[0].fileId" [ngStyle]="{ width : getWidthContainerPhoto()}"
+              controls="controls">
+              <source [src]="getUrl(listExpenses[expenseIndex].folders[indexFolder].files[0].url)" [attr.width]="widthPhoto">
+            </video>
+
+            <img *ngIf="listExpenses[expenseIndex].folders[indexFolder].files[0].type === 'image'" [attr.id]="listExpenses[expenseIndex].folders[indexFolder].files[0].fileId" [src]="getUrl(listExpenses[expenseIndex].folders[indexFolder].files[0].url)"> {{ callOnLastIterationOne()}}
+          </div>
+          <div class="edit-photo-creative" [hidden]="rights.canManageOwnBudgets === 0">
+            <div class="edit-photo-creative-item">
+
+            </div>
+
+            <div id="add-files" class="edit-photo-creative-item edit-photo-icon">
+            </div>
+
+            <div id="remove-file" class="edit-photo-creative-item">
+            </div>
+          </div>
+        </div>
+        <div class="info-full" [ngStyle]="{ width : getWidthContainerPhoto(),display: (ShowFile.show) ? 'block' : 'none'}">
+          <div class="closed-info-file" (click)="CloseInfoFile()"></div>
+          <iframe [src]="getUrl(ShowFile.url)"></iframe>
+
+        </div>
+      </div>
+      <div class="info-fon-details" [ngClass]="(rights.canManageOwnBudgets === 0) ? 'info-fon-details-no-edit-mode' : ''">
+         
+        <div class="info-fon-details-up">
+          <div class="info-fon-details-up-item info-fon-val-item" [ngClass]="(rights.canManageOwnBudgets === 1) ? 'info-fon-details-up-edit-mode' : ''"
+            (click)="EditValueExpense($event)">
+            <div class="head-details">
+              <h3>Campaign:</h3>
+              <div class="edit-hover">
+
+              </div>
+            </div>
+
+            <p *ngIf="listExpenses.length !== 0" [textContent]="listExpenses[expenseIndex].campaign"></p>
+            <input class="edit-velue" *ngIf="listExpenses.length !== 0" type="text" tabindex="0" [(ngModel)]="listExpenses[expenseIndex].campaign"
+              required />
+          </div>
+
+          <div class="info-fon-details-up-item info-fon-val-item" [ngClass]="(rights.canManageOwnBudgets === 1) ? 'info-fon-details-up-edit-mode' : ''"
+            (click)="EditValueExpense($event,true)">
+            <div class="head-details">
+              <h3>Planned budget:</h3>
+              <div class="edit-hover">
+
+              </div>
+            </div>
+            
+            <p *ngIf="listExpenses.length !== 0 && editMode.Command !== 'ChangeSumm'" [textContent]="'$ ' + listExpenses[expenseIndex].targetBudget"></p>
+            <p *ngIf="listExpenses.length !== 0 && editMode.Command === 'ChangeSumm'" [textContent]="'$ ' + editMode.summProduct"></p>
+            <input class="edit-velue" *ngIf="listExpenses.length !== 0 && editMode.Command !== 'ChangeSumm'" type="number"  tabindex="1" [(ngModel)]="listExpenses[expenseIndex].targetBudget"
+              required />
+              <input class="edit-velue" *ngIf="listExpenses.length !== 0 && editMode.Command === 'ChangeSumm'" type="number"  tabindex="1" [(ngModel)]="editMode.summProduct"
+              required />
+          </div>
+
+          <div class="info-fon-details-up-item info-fon-val-item" [ngClass]="(rights.canManageOwnBudgets === 1) ? 'info-fon-details-up-edit-mode' : ''"
+          (click)="EditValueExpense($event,false,true,false)">
+          <div class="head-details">
+            <h3>Actual budget:</h3>
+            <div class="edit-hover">
+
+            </div>
+          </div>
+          <p *ngIf="listExpenses.length !== 0" [textContent]="'$ ' + listExpenses[expenseIndex].actualBudget"></p>
+
+          <input class="edit-velue" *ngIf="listExpenses.length !== 0" tabindex="2" type="number"  [(ngModel)]="listExpenses[expenseIndex].actualBudget"
+            required />
+        </div>
+
+          <div class="info-fon-details-up-item info-fon-val-item coop-value" [ngClass]="(rights.canManageOwnBudgets === 1) ? 'info-fon-details-up-edit-mode' : ''"
+            (click)="EditValueExpense($event,false,false,true)">
+            <div class="head-details">
+              <h3>CO-OP:</h3>
+              <div class="edit-hover">
+
+              </div>
+            </div>
+            <p *ngIf="listExpenses.length !== 0" [textContent]="'% ' + listExpenses[expenseIndex].coopPercent"></p>
+            <input class="edit-velue" *ngIf="listExpenses.length !== 0" tabindex="3" type="number"  [(ngModel)]="listExpenses[expenseIndex].coopPercent"
+              max="100" required />
+          </div>
+        </div>
+        <div class="info-fon-details-down">
+          <div *ngIf="listExpenses.length !== 0" class="info-fon-details-down-item info-fon-val-item" [ngClass]="(rights.canManageOwnBudgets === 1) ? 'info-fon-details-down-edit-mode' : ''"
+            textarea-info-expense [text]="listExpenses[expenseIndex].description" [canManageOwnBudgets]="rights.canManageOwnBudgets"
+            (onValueText)="setValueText($event)" [label]="'description'" (click)="EditValueTextArea($event)">
+
+
+            <div class="head-details">
+              <h3 [textContent]="(listExpenses.length !== 0 && listExpenses[expenseIndex].description.length > 0) ? 'Description:' : 'Description'"></h3>
+              <div class="edit-hover">
+
+              </div>
+            </div>
+
+
+            <textarea class="edit-velue" wrap="soft" tabindex="4" required></textarea>
+          
+
+
+          </div>
+          <div *ngIf="listExpenses.length !== 0" class="info-fon-details-down-item info-fon-val-item" [ngClass]="(rights.canManageOwnBudgets === 1) ? 'info-fon-details-down-edit-mode' : ''"
+            textarea-info-expense [text]="listExpenses[expenseIndex].strategy" [canManageOwnBudgets]="rights.canManageOwnBudgets"
+            (onValueText)="setValueText($event)" [label]="'strategy'" (click)="EditValueTextArea($event)">
+            <div class="head-details">
+              <h3 [textContent]="(listExpenses.length !== 0 && listExpenses[expenseIndex].strategy.length > 0) ? 'Strategy:' : 'Strategy'"></h3>
+              <div class="edit-hover">
+
+              </div>
+            </div>
+
+            <textarea class="edit-velue" wrap="soft" tabindex="5" required></textarea>
+           
+
+          </div>
+          <div *ngIf="listExpenses.length !== 0" class="info-fon-details-down-item info-fon-val-item" [hidden]="rights.canManageOwnBudgets === 0"
+            [ngClass]="(rights.canManageOwnBudgets === 1) ?  'info-fon-details-down-edit-mode' : ''" textarea-info-expense
+            [text]="listExpenses[expenseIndex].notes" [canManageOwnBudgets]="rights.canManageOwnBudgets" (onValueText)="setValueText($event)"
+            [label]="'notes'" (click)="EditValueTextArea($event)">
+            <div class="head-details">
+              <h3 [textContent]="(listExpenses.length !== 0 && listExpenses[expenseIndex].notes.length > 0) ? 'Notes / Rational:' : 'Notes / Rational'"></h3>
+              <div class="edit-hover">
+
+              </div>
+            </div>
+
+            <textarea class="edit-velue" wrap="soft" tabindex="6" required></textarea>
+
+            <div class="icon-notes">
+
+            </div>
+           
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="edit-flight-date-modal">
+      <div class="cursore-modal"></div>
+      <div class="head-edit-flight-date">
+        <div class="head-edit-flight-date-left">
+          <span>$</span>
+          <input type="number" [(ngModel)]="editMode.defaultValEditDate.targetBudget" number [percent]="false" required />
+        </div>
+        <div class="head-edit-flight-date-right" (click)="ClosedMask()">
+
+        </div>
+      </div>
+      <div class="edit-flight-date-weeks">
+        <ng-template ngFor let-item [ngForOf]="weeks" let-u="index" [ngForTrackBy]="trackByIndex">
+          <span [textContent]="item"></span>
+        </ng-template>
+        <div class="edit-flight-date-days">
+          <ng-template ngFor let-item [ngForOf]="editMode.daysMonth" let-u="index" [ngForTrackBy]="trackByIndex">
+            <span [textContent]="item.label" [ngClass]="item.selected" (click)="SelectNewDate(u)"></span>
+          </ng-template>
+        </div>
+      </div>
+      <div class="edit-btns">
+        <div class="edit-btns-update">
+
+        </div>
+        <div class="edit-btns-apply">
+          <span>Apply dates</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="save-expense" [ngStyle]="{display: (rights.canManageOwnBudgets === 1) ? 'block' : 'none' }" [ngClass]="(editMode.settings && editMode.settings.viewType !== 'daysOfMonth') ? 'save-expense-small' : ''">
+      <span class="save=and-add" (click)="Save(true)" *ngIf="editMode.settings && editMode.settings.viewType === 'daysOfMonth'">Save and add campaign</span>
+    <span (click)="Save()">Save and exit</span>
+    
+    
+  </div>
+  <div class="modal-edit-mask"></div>
+  <div class="preloader-mini"></div>
+
+</div>

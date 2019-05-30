@@ -1,0 +1,213 @@
+<div class="right-main default-graph">
+  <div class="right-up-data">
+    <div class="right-up-left">
+      <div class="top__data" [ngClass]="(rights.canManageOwnBudgets === 1) ? 'edit-data-budget' : ''" (click)="EditTargetBudget($event)">Target Budget:
+        <span [textContent]="'$ ' + statsPriceText.budget">
+         
+        </span>
+
+      </div>
+      <input id="budget-change" type="number"   />
+      <div class="top__data">Planned Budget:
+        <span [textContent]="'$ ' + statsPriceText.expenses">
+
+        </span>
+      </div>
+      <div class="top__data">Actual Budget:
+        <span [textContent]="'$ ' + statsPriceText.actualBudget">
+
+        </span>
+      </div>
+      <div class="top__data">CO-OP:
+        <span [textContent]="'$ ' + statsPriceText.coop">
+
+        </span>
+      </div>
+      <div class="top__data">Total less CO-OP:
+        <span [textContent]="'$ ' + statsPriceText.totalLessCoop">
+
+        </span>
+      </div>
+
+      <div class="top__data">Variance:
+        <span class="last-data" [ngStyle]="{color: (stats.variance < 0) ? '#ec5155 ' : '#88bb93 '}" [textContent]="'$ ' + statsPriceText.variance">
+        </span>
+      </div>
+
+
+    </div>
+  
+  </div>
+  <div class="chart__wrap">
+    <div class="toogle-trends" (click)="ToggleTrands()">
+      <p [textContent]="Trends.btn.title"></p>
+      <div class="trend-status-icon on-trend"></div>
+    </div>
+    <div class="channels">
+      <div class='channel__all m--all ' [hidden]="channels.length > 0" [ngClass]="classAll">
+        <!--(click)="SelectAllChannel($event)"-->
+        <span></span>
+        <p>All</p>
+        <div class="closed"></div>
+      </div>
+      <div class="channel__item" *ngFor="let item of channels; let i = index;" [ngClass]="(channels[i].hide) ? 'm--hidden ' : channels[i].class"
+        channel-item (sendMsgEvent)="SelectChannel($event)" [attr.data]="i">
+        <span [ngStyle]="{background : channels[i].color}"></span>
+        <p [textContent]="item.title"></p>
+        <div class="closed"></div>
+      </div>
+    </div>
+
+    <div class="chart">
+      <div class="chart-val-one"></div>
+      <div class="chart-val-two"></div>
+      <div class="chart-line"></div>
+      <div class="chart-val">
+
+        <div class="chart-val-midle">
+          <span [textContent]="graph.midle"></span>
+        </div>
+        <div class="chart-val-max">
+          <span [textContent]="graph.max"></span>
+        </div>
+      </div>
+      <div class="chart-fon">
+        <canvas id="myChart" width="100%" height="231px"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="main-current-day">
+    <span [textContent]="getCurrentDate()"></span>
+  </div>
+  <div class="confirm-switch">
+    <div class="main_table__header" [ngSwitch]="viewTable">
+      <div class="main_table__header_fon" *ngSwitchCase="0">
+        <div class="main_table__row js-table-days">
+          <!-- *ngIf="TebleHead.givenDay !== null"-->
+          <div class="main_table__cell" [ngClass]="titlesHeader[i].class" *ngFor="let item of titlesHeader; let i = index;">
+            <div class="weeks-fon">
+              <span [textContent]="titlesHeader[i].week"></span>
+              <p [textContent]="titlesHeader[i].label"></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="main_table__header_fon" *ngSwitchCase="1">
+        <div class="main_table__row js-table-days">
+          <ng-template ngFor let-item [ngForOf]="weeks" let-i="index">
+            <div class="main_table__cell" [textContent]="item.label" [ngClass]="item.class">
+
+            </div>
+          </ng-template>
+        </div>
+
+      </div>
+      <div class="main_table__header_fon" *ngSwitchCase="2">
+        <div class="main_table__row js-table-days">
+          <ng-template ngFor let-item [ngForOf]="titlesHeader" let-i="index">
+            <div class="main_table__cell" [textContent]="item.header" [ngClass]="item.class">
+
+            </div>
+          </ng-template>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="trends-mask"></div>
+
+
+<div class="trends">
+  <div class="right-up-data">
+    <div class="right-up-left trends-channels">
+      <div class="top__data" (click)="SelectChannelTrends('sessions')" [ngStyle]="{color:(Trends.ActiveMenu.sessions === true) ? '#f38c2c' : ''}">Sessions:
+        <span [textContent]="Trends.stats.sessions">
+
+        </span>
+
+      </div>
+      <div class="top__data" (click)="SelectChannelTrends('leads')" [ngStyle]="{color:(Trends.ActiveMenu.leads === true) ? '#47a089' : ''}">Leads:
+        <span [textContent]="Trends.stats.leads">
+
+        </span>
+      </div>
+      <div class="top__data" (click)="SelectChannelTrends('sales')" [ngStyle]="{color:(Trends.ActiveMenu.sales === true) ? '#ec5155' : ''}">Sales:
+        <span [textContent]="Trends.stats.sales">
+
+        </span>
+      </div>
+      <div class="top__data" (click)="SelectChannelTrends('cpl')" [ngStyle]="{color:(Trends.ActiveMenu.cpl === true) ? '#55395f' : ''}">CPL:
+        <span [textContent]="Trends.stats.cpl">
+
+        </span>
+      </div>
+      <div class="top__data" (click)="SelectChannelTrends('cps')" [ngStyle]="{color:(Trends.ActiveMenu.cps === true) ? '#224166' : ''}">CPS:
+        <span [textContent]="Trends.stats.cps">
+
+        </span>
+      </div>
+
+    </div>
+    <div class="right-up-rights" (click)="ToggleTrands()">
+      <p [textContent]="Trends.btn.title"></p>
+      <div class="trend-status-icon off-trend"></div>
+    </div>
+  </div>
+  <div class="chart__wrap">
+    <div class="channels" [hidden]="!Trends.ActiveMenu.sessions">
+      <div class='channel__all_trends m--all ' [hidden]="Trends.channels.length > 0">
+
+        <input type="checkbox" id="channels-all-trends" checked="checked" />
+        <label for="channels-all-trends">All</label>
+      </div>
+      <div class="channel__item" *ngFor="let item of Trends.channels; let i = index;" [ngClass]="(Trends.channels[i].hide) ? 'm--hidden ' : Trends.channels[i].class">
+        <input type="checkbox" [attr.id]="'Trends-channels-'+i" />
+        <label channel-item [attr.for]="'Trends-channels-'+i" [textContent]="item.title" [attr.data]="i" (sendMsgEvent)="SelectChannelTrendSession($event)"></label>
+
+
+      </div>
+
+    </div>
+
+    <div class="chart">
+      <div class="chart-val-one"></div>
+      <div class="chart-val-two"></div>
+      <div class="chart-val-three"></div>
+      <div class="chart-line"></div>
+      <div class="chart-val">
+
+        <div class="chart-val-midle">
+          <span [textContent]="Trends.graph.midle"></span>
+        </div>
+        <div class="chart-val-max">
+          <span [textContent]="Trends.graph.max"></span>
+        </div>
+        <div class="chart-val-min">
+          <span>0</span>
+        </div>
+      </div>
+      <div class="chart-fon">
+        <canvas id="myTrends" width="100%" height="200px"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="confirm-switch">
+    <div class="main_table__header">
+
+      <div class="main_table__header_fon">
+        <div class="main_table__row js-table-days">
+          <ng-template ngFor let-item [ngForOf]="Trends.titlesHeader" let-i="index">
+            <div class="main_table__cell" [textContent]="item.header">
+
+            </div>
+          </ng-template>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

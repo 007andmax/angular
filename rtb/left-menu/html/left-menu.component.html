@@ -1,0 +1,393 @@
+<div class="left-main">
+  <div class="datepicker">
+    <div class="datepicker-info">
+      <span [textContent]="datepicker.val"></span>
+    </div>
+    <div class="datepicker-fon">
+      <div class="datepicker-header">
+        <div class="datepicker-header-fon">
+          <div class="datepicker-years">
+            <ng-template ngFor let-item [ngForOf]="datepicker.years" [ngForTrackBy]="trackByIndex">
+
+              <div class="datepicker-years-item" (click)="SelectYears($event,item)" [ngClass]="UpdateYear(item)">
+                <span [textContent]="item"></span>
+              </div>
+            </ng-template>
+          </div>
+          <div class="datepicker-data">
+            <ng-template ngFor let-item [ngForOf]="datepicker.range" let-i="index" [ngForTrackBy]="trackByIndex">
+
+              <div class="datepicker-data-item" [attr.data-dp]='datepicker.range[i].val' (click)="SelectData(datepicker.range[i].val,i)"
+                [ngClass]="datepicker.range[i].class">
+
+                <span [textContent]="item.text"></span>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+      <div class="datepicker-list">
+        <ng-template ngFor let-item [ngForOf]="datepicker.month" let-i="index" [ngForTrackBy]="trackByIndex">
+
+          <div datepicker-item class="col-md-8 datepicker-list-item" [month]="i + 1" [ngClass]="datepicker.month[i].class" (sendMsgEvent)="selectMonth($event)">
+
+            <div class="datepicker-list-item-fon">
+              <span [textContent]="datepicker.month[i].text"></span>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <div class="left-main-body">
+    <div class="labels">
+      <div class="labels__item m--big m--sessions col-md-8" (click)="SelectLabel($event,'sessions')" data="Sessions" [ngClass]="(ActiveMenu.sessions === true) ? 'm--active' : ''"
+        graphic (sendMsgEvent)="hoverLabel($event)">
+        <div class="labels-body">
+          <span id='session' [textContent]="statsPriceText.sessions">
+
+          </span>
+          <p>Sessions:</p>
+        </div>
+        <div class="giagramm-fon giagramm-fon-min">
+          <!-- [ngStyle]="{width: UpdateWidthChart(2,12)}"-->
+          <div class="giagramm">
+            <canvas id="mySessions" width="100%" height="231px"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="labels__item m--big m--leads col-md-8" (click)="SelectLabel($event,'leads')" data="Leads" [ngClass]="(ActiveMenu.leads === true) ? 'm--active' : ''"
+        graphic (sendMsgEvent)="hoverLabel($event)">
+        <div class="labels-body">
+          <span id='leads' [textContent]="statsPriceText.leads">
+
+          </span>
+          <p>Leads:</p>
+        </div>
+        <div class="giagramm-fon giagramm-fon-min">
+          <!-- [ngStyle]="{width: UpdateWidthChart(2,12)}"-->
+          <div class="giagramm">
+            <canvas id="myLeads" width="100%" height="231px"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="labels__item m--sales col-md-16" (click)="SelectLabel($event,'sales')" data="Sales" [ngClass]="(ActiveMenu.sales === true) ? 'm--active' : ''"
+        graphic (sendMsgEvent)="hoverLabel($event)">
+        <div class="labels-body">
+          <span id='sales' [textContent]="statsPriceText.sales">
+
+
+          </span>
+          <p>Sales:</p>
+        </div>
+        <div class="giagramm-fon giagramm-fon-full">
+          <!-- [ngStyle]="{width: UpdateWidthChart(1,10)}"-->
+          <div class="giagramm">
+            <canvas id="mySales" width="100%" height="231px"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="labels__item m--cpl col-md-8" (click)="SelectLabel($event,'cpl')" data="Cpl" [ngClass]="(ActiveMenu.cpl === true) ? 'm--active' : ''"
+        graphic (sendMsgEvent)="hoverLabel($event)">
+        <div class="labels-body">
+          <span id='cpl' [textContent]="'$' + statsPriceText.cpl">
+
+          </span>
+          <p>CPL:</p>
+        </div>
+        <div class="giagramm-fon giagramm-fon-min">
+          <!-- [ngStyle]="{width: UpdateWidthChart(2,12)}"-->
+          <div class="giagramm">
+            <canvas id="myCpl" width="100%" height="231px"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="labels__item m--nomargin m--cps col-md-8" (click)="SelectLabel($event,'cps')" data="Cps" [ngClass]="(ActiveMenu.cps === true) ? 'm--active' : ''"
+        graphic (sendMsgEvent)="hoverLabel($event)">
+        <div class="labels-body">
+          <span id='cps' [textContent]="'$' + statsPriceText.cps">
+          </span>
+          <p>CPS:</p>
+        </div>
+        <div class="giagramm-fon giagramm-fon-min">
+          <!-- [ngStyle]="{width: UpdateWidthChart(2,12)}"-->
+          <div class="giagramm">
+            <canvas id="myCps" width="100%" height="231px"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="table_control-up">
+      <div class="table_control-up-first">
+        <div class="table_control-edit-pannel-fon">
+          <div class="table_control-edit-pannel">
+            <div class="table_control-edit-pannel-left ui-widget">
+
+              <div class="item-left" data-toggle="tooltip" data-placement="top" tabindex="0" title="Show costs in dollars. Coming soon">
+
+              </div>
+              <div class="item-left" data-toggle="tooltip" data-placement="top" tabindex="0" title="Show costs in percent. Coming soon">
+
+              </div>
+              <div class="item-left" data-toggle="tooltip" data-placement="top" tabindex="0" title="Actual Budget">
+
+              </div>
+
+            </div>
+
+            <div class="table_control-edit-pannel-right" id="edit-product-not-name">
+              <div class="edit-pannel-right-item" data-toggle="tooltip" data-placement="top" tabindex="0" title="Uncollapse all categories. Coming soon">
+
+              </div>
+              <div class="edit-pannel-right-item" data-toggle="tooltip" data-placement="top" tabindex="0" title="Sort items. Coming soon">
+
+              </div>
+              <div class="edit-pannel-right-item" data-toggle="tooltip" data-placement="top" tabindex="0" title="Remove items. Coming soon">
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="info-expenses">
+        <div class="info-expenses-fon">
+          <div class="search-icon" data-toggle="tooltip" data-placement="top" tabindex="0" title="Find the product. Coming soon"></div>
+          <span [textContent]="infoExpenses.categories + ' Categories'"></span>
+          <span [textContent]="infoExpenses.products + ' products'"></span>
+          <span [textContent]="infoExpenses.campaigns + ' campaigns'"></span>
+        </div>
+
+      </div>
+    </div>
+
+
+
+    <div class="table_control">
+      <div class="tooltip-categories leftArrow">
+        <p>Click right button on a mouse for edit</p>
+      </div>
+      <ul class="tc__menu js-cat-menu">
+        <ng-template ngFor let-item [ngForOf]="categories" let-i="index" [ngForTrackBy]="trackById" let-lastCategories="last">
+
+          <li class="tc__menu_item m--hover m--hidden" [attr.data-line]="categories[i].id" [ngClass]="categories[i].class" [attr.lenproducts]="categories[i].products.length"
+            parent="parent" [attr.index]="i + 1" [attr.categories-id]="i">
+            <div class="check-media" *ngIf="categories[i].mediaCategorie === 1">MC</div>
+            <div class="menu-line" [ngStyle]="{backgroundColor: categories[i].color}"></div>
+
+            <div [ngClass]="(categories[i].titleShort !== null) ? 'have-short-title' : ''" class="tc__title parent-title context-menu-target"
+              menu-item [parentId]="categories[i].id" [enabledClick]="true" [color]="categories[i].color">
+              <span class="titleFull" [textContent]="categories[i].title"></span>
+              <span class="titleShort" [textContent]="categories[i].titleShort"></span>
+
+            </div>
+            <div class="tc__price parent-price context-menu-target" menu-item [parentId]="categories[i].id" [enabledClick]="true" [color]="categories[i].color">
+              <p>$
+                <span [textContent]="categories[i].priceText">
+
+
+                </span>
+              </p>
+            </div>
+
+            <ul class="tc__submenu tc__submenu-error" *ngIf="tableData.settings.viewType === 'daysOfMonth'">
+              <ng-template ngFor let-itemsub [ngForOf]="categories[i].products" let-u="index" [ngForTrackBy]="trackById">
+
+                <li class="tc__submenu_item js-table-line m--hidden" [attr.data-line]="categories[i].products[u].id" [ngClass]="categories[i].products[u].class"
+                  [ngStyle]="{display: (categories[i].open) ? 'block' : 'none'}" [attr.lenproducts]="(categories[i].products[u].subproducts) ? categories[i].products[u].subproducts.length : 0"
+                  parent="subparent" [attr.categories-id]="i" [attr.products-id]="u" [attr.subproducts-id]="-1">
+
+                  <div class="menu-line" [ngStyle]="{backgroundColor: categories[i].color}"></div>
+                  <div class="tc__title sub-title context-menu-target" menu-item [parentId]="categories[i].products[u].id" [enabledClick]="(categories[i].products[u].subproducts) ? true : false"
+                    [ngClass]="(categories[i].products[u].titleShort !== null) ? 'have-short-title' : ''">
+
+                    <span class="titleFull" [textContent]="categories[i].products[u].title"></span>
+                    <span class="titleShort" [textContent]="categories[i].products[u].titleShort"></span>
+
+                  </div>
+                  <div class="tc__price sub-price context-menu-target" menu-item [parentId]="categories[i].products[u].id" [enabledClick]="(categories[i].products[u].subproducts) ? true : false">
+                    <!--[ngClass]="categories[i].products[u].classPrice"-->
+                    $
+                    <span [textContent]="categories[i].products[u].priceText">
+
+                    </span>
+                  </div>
+
+                  <ul class="tc__subsubmenu" *ngIf="categories[i].products[u].subproducts">
+                    <ng-template ngFor let-itemproduct [ngForOf]="categories[i].products[u].subproducts" let-g="index" [ngForTrackBy]="trackById">
+
+                      <li class="tc__subsubmenu_item js-table-line" [attr.data-line]="categories[i].products[u].subproducts[g].id" parent="product"
+                      [ngStyle]="{display: (categories[i].open) ? 'block' : 'none'}" [ngClass]="categories[i].products[u].subproducts[g].class" [attr.categories-id]="i"
+                        [attr.products-id]="u" [attr.subproducts-id]="g">
+
+                        <div class="menu-line" [ngStyle]="{backgroundColor: categories[i].color}"></div>
+                        <div class="product-line" [ngStyle]="{backgroundColor: categories[i].color}"></div>
+                        <div class="tc__title context-menu-target" [ngClass]="(categories[i].products[u].subproducts[g].titleShort !== null) ? 'have-short-title' : ''"
+                          menu-item [parentId]="categories[i].products[u].subproducts[g].id" [enabledClick]="false">
+                          <span class="titleFull" [textContent]="categories[i].products[u].subproducts[g].title"></span>
+                          <span class="titleShort" [textContent]="categories[i].products[u].subproducts[g].titleShort"></span>
+                        </div>
+                        <div class="tc__price context-menu-target" menu-item [parentId]="categories[i].products[u].subproducts[g].id" [enabledClick]="false">$
+                          <span [textContent]="categories[i].products[u].subproducts[g].priceText">
+
+                          </span>
+                        </div>
+
+                      </li>
+                    </ng-template>
+
+                  </ul>
+
+
+                </li>
+
+              </ng-template>
+
+              <li class="tc__submenu_item js-table-line m--hidden add-product menu-shadow-down" parent="not" [attr.categories-id]="i" [attr.data-line]="'add-' + i"
+                *ngIf="categories[i].mediaCategorie === 0 && rights.canManageOwnBudgets === 1">
+                <div class="menu-line" [ngStyle]="{backgroundColor: categories[i].color}"></div>
+               
+                <div class="add-product-hit" menu-item [enabledClick]="false">
+                  <span (click)="onInitAddProduct($event)"> <div class="add-product-icon"></div>Add new Product</span>
+                  <input type="text" />
+                  <button>Add</button>
+                  <div class="closed"></div>
+                </div>
+
+              </li>
+            </ul>
+
+            <!-- ////////////////////////////////////////////////////////////////  -->
+
+            <ul class="tc__submenu" *ngIf="tableData.settings.viewType !== 'daysOfMonth'">
+
+              <ng-template ngFor let-itemsub [ngForOf]="categories[i].products" let-u="index" [ngForTrackBy]="trackById">
+                <div class="next-item" [attr.data-line]="categories[i].products[u].id" [attr.categories-id]="i" parent="subparent" [attr.lenproducts]="(categories[i].products[u].subproducts) ? categories[i].products[u].subproducts.length : 0">
+                  <!--         <ng-template ngFor let-itemexpenses [ngForOf]="categories[i].products[u].expenses" let-s="index" [ngForTrackBy]="trackById">-->
+
+
+                  <li class="tc__submenu_item js-table-line m--hidden" *ngIf="categories[i].products[u].expenses" [attr.data-line]="categories[i].products[u].id"
+                  [ngStyle]="{display: (categories[i].open) ? 'block' : 'none'}" [attr.lenproducts]="0" parent="subparent" [attr.categories-id]="i" [attr.products-id]="u"
+                    [attr.subproducts-id]="-1">
+                    <!--[attr.data-line]="(categories[i].products[u].expenses.length > 1 || categories[i].products[u].expenses.length === 1 && categories[i].products[u].subproducts !== undefined) ? categories[i].products[u].expenses[s].id : categories[i].products[u].id"-->
+
+                    <div class="menu-line" [ngStyle]="{backgroundColor: categories[i].color}"></div>
+                    <div class="tc__title sub-title context-menu-target" [ngClass]="(categories[i].products[u].titleShort !== null) ? 'have-short-title' : ''"
+                      menu-item [parentId]="categories[i].products[u].id" [enabledClick]="false">
+                      <span class="titleFull" [textContent]="categories[i].products[u].title"></span>
+                      <span class="titleShort" [textContent]="categories[i].products[u].titleShort"></span>
+                    </div>
+                    <div class="tc__price sub-price context-menu-target" *ngIf="categories[i].products[u].subproducts === undefined" menu-item
+                      [parentId]="categories[i].products[u].id" [enabledClick]="false">
+                      <!--[ngClass]="categories[i].products[u].classPrice"-->
+                      $
+                      <span [textContent]="categories[i].products[u].priceText">
+
+                      </span>
+                    </div>
+                    <div class="tc__price sub-price context-menu-target" *ngIf="categories[i].products[u].subproducts" menu-item [parentId]="categories[i].products[u].id"
+                      [enabledClick]="false">
+                      <!--[ngClass]="categories[i].products[u].classPrice"-->
+                      $
+                      <span [textContent]="categories[i].products[u].priceExpensesText">
+
+                      </span>
+                    </div>
+
+
+                  </li>
+
+                  <!--  </ng-template>-->
+
+                  <li class="tc__submenu_item js-table-line m--hidden" *ngIf="categories[i].products[u].subproducts" [attr.data-line]="categories[i].products[u].id"
+                    [ngClass]="categories[i].products[u].class" [ngStyle]="{display: (categories[i].open) ? 'block' : 'none'}" [attr.lenproducts]="categories[i].products[u].subproducts.length"
+                    parent="subparent" [attr.categories-id]="i" [attr.products-id]="u" [attr.subproducts-id]="-1">
+
+                    <div class="menu-line" [ngStyle]="{backgroundColor: categories[i].color}"></div>
+                    <div class="tc__title sub-title context-menu-target" [ngClass]="(categories[i].products[u].titleShort !== null) ? 'have-short-title' : ''"
+                      menu-item [parentId]="categories[i].products[u].id" [enabledClick]="true">
+                      <span class="titleFull" [textContent]="categories[i].products[u].title"></span>
+                      <span class="titleShort" [textContent]="categories[i].products[u].titleShort"></span>
+                    </div>
+                    <div class="tc__price sub-price context-menu-target" *ngIf="categories[i].products[u].expenses === undefined" menu-item [parentId]="categories[i].products[u].id"
+                      [enabledClick]="true">
+                      <!--[ngClass]="categories[i].products[u].classPrice"-->
+                      $
+
+                      <span [textContent]="categories[i].products[u].priceText">
+                      </span>
+                    </div>
+                    <div class="tc__price sub-price context-menu-target" *ngIf="categories[i].products[u].expenses !== undefined" menu-item [parentId]="categories[i].products[u].id"
+                      [enabledClick]="true">
+                      <!--[ngClass]="categories[i].products[u].classPrice"-->
+                      $
+
+                      <span [textContent]="categories[i].products[u].priceSubproductsText">
+                      </span>
+                    </div>
+
+
+                    <ul class="tc__subsubmenu">
+                      <ng-template ngFor let-itemproduct [ngForOf]="categories[i].products[u].subproducts" let-g="index" let-lastP="last">
+                        <div class="last-item">
+                          <!--  <ng-template ngFor let-itemexpenses [ngForOf]="categories[i].products[u].subproducts[g].expenses" let-q="index">-->
+                          <li class="tc__subsubmenu_item js-table-line" [attr.data-line]="categories[i].products[u].subproducts[g].id" parent="product"
+                          [ngStyle]="{display: (categories[i].open) ? 'block' : 'none'}" [attr.categories-id]="i" [attr.products-id]="u" [attr.subproducts-id]="g"
+                            [ngClass]="categories[i].products[u].subproducts[g].class">
+
+                            <div class="menu-line" [ngStyle]="{backgroundColor: categories[i].color}"></div>
+                            <div class="product-line" [ngStyle]="{backgroundColor: categories[i].color}"></div>
+                            <div class="tc__title context-menu-target" [ngClass]="(categories[i].products[u].subproducts[g].titleShort !== null) ? 'have-short-title' : ''"
+                              menu-item [parentId]="categories[i].products[u].subproducts[g].id" [enabledClick]="false">
+                              <span class="titleFull" [textContent]="categories[i].products[u].subproducts[g].title"></span>
+                              <span class="titleShort" [textContent]="categories[i].products[u].subproducts[g].titleShort"></span>
+                            </div>
+                            <div class="tc__price context-menu-target" menu-item [parentId]="categories[i].products[u].subproducts[g].id" [enabledClick]="false">$
+                              <span [textContent]="categories[i].products[u].subproducts[g].priceText">
+
+                              </span>
+                            </div>
+
+
+                          </li>
+                          <!--  </ng-template>-->
+                        </div>
+                      </ng-template>
+                    </ul>
+
+
+                  </li>
+
+
+                </div>
+
+              </ng-template>
+
+            </ul>
+
+            {{ lastCategories === true ? callOnLastIteration() : null}}
+
+          </li>
+        </ng-template>
+
+        <li class="tc__menu_item m--hover m--hidden m--hasSubmenu js-table-line add-categori" data-line="add-categori" lenproducts="0"
+          parent="parent" [ngStyle]="{display: (rights.canManageOwnBudgets === 1 && tableData.settings.viewType === 'daysOfMonth') ? 'block' : 'none'}">
+
+          <div class="menu-line"></div>
+          <div class="add-categori-hit" menu-item [enabledClick]="false">
+            <span>Add new category</span>
+            <input [(ngModel)]="NewProduct.categoriName" id="add-categori" type="text" />
+            <div class="plus"></div>
+          </div>
+          <div class="paint-bucket" menu-item [enabledClick]="false"></div>
+          <div class="add-categori-icon" menu-item [enabledClick]="false"></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>

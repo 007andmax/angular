@@ -1,0 +1,302 @@
+#myChart,#myTrends
+    position: relative
+    z-index: 3
+#budget-change
+    display: none
+    width: 100px
+    height: auto
+    background-color: #ffffff
+    border: 1px solid #ffffff
+    text-align: left
+    padding: 5px
+    font-family: ProximaNova-SemiBold
+    font-weight: 600
+    font-size: 13px
+    font-style: normal
+    font-stretch: normal
+    line-height: normal
+    letter-spacing: .1px
+    color: #262626
+    vertical-align: middle
+    margin: 0px 30px 0px 6px
+.edit-data-budget
+    cursor: pointer
+.right-up-left,.right-up-rights
+    display: block
+    height: 50px
+    position: relative
+.right-up-rights
+    justify-content: flex-end
+.trends
+    .right-up-left,.right-up-rights
+        display: flex
+        align-items: center
+.right-up-left
+    line-height: 50px
+.trends-channels
+    .top__data
+        cursor: pointer
+.toogle-trends
+    display: block
+    position: absolute
+    top: 0px
+    right: 35px
+    width: 120px
+    height: 50px
+    cursor: pointer
+    z-index: 16
+    p
+        display: inline-block
+        width: 118px
+        line-height: 50px
+        font-family: 'ProximaNova-Regular'
+        font-size: 13px
+        font-weight: normal
+        font-style: normal
+        font-stretch: normal
+        letter-spacing: 0.1px
+        text-align: right
+        color: #a6a6a6
+        margin: 0px
+    &:after
+        content: "-"
+        position: absolute
+        display: none
+        left: 133px
+        top: 0px
+        width: 33px
+        height: 50px
+        font-family: 'ProximaNova-Regular'
+        font-size: 13px
+        font-weight: normal
+        font-style: normal
+        font-stretch: normal
+        line-height: 50px
+        letter-spacing: 0.1px
+        text-align: center
+        color: #a6a6a6
+    .trend-status-icon
+        display: none
+.right-up-rights-body
+    display: flex
+    align-items: center
+    width: 280px
+    height: 50px
+.right-up-rights
+    cursor: pointer
+    width: 280px
+    p
+        display: inline-block
+        min-width: 10px
+        line-height: normal
+        font-family: 'ProximaNova-Regular'
+        font-size: 13px
+        font-weight: normal
+        font-style: normal
+        font-stretch: normal
+        letter-spacing: 0.1px
+        text-align: right
+        color: #a6a6a6
+        margin: 0px 25px 5px 10px
+        vertical-align: middle
+        &:last-child
+            margin: 0px 0px 5px 10px 
+    &:after
+        content: "-"
+        position: absolute
+        display: none
+        left: 133px
+        top: 0px
+        width: 33px
+        height: 50px
+        font-family: 'ProximaNova-Regular'
+        font-size: 13px
+        font-weight: normal
+        font-style: normal
+        font-stretch: normal
+        line-height: 50px
+        letter-spacing: 0.1px
+        text-align: center
+        color: #a6a6a6
+    .trend-status-icon
+        display: none
+
+.trend-status-icon
+    display: inline-block
+    width: 36px
+    height: 36px
+    vertical-align: middle
+    line-height: 50px
+    margin: 0px 0px 0px 45px
+    
+.main-current-day 
+    display: flex
+    width: 100%
+    background-color: #fff
+    height: 50px
+    border-bottom: 1px solid #f0f0f0
+    align-items: center
+    justify-content: center
+    span 
+        font-family: "ProximaNova-Regular"
+        font-size: 11px
+        font-weight: normal
+        font-style: normal
+        font-stretch: normal
+        line-height: normal
+        letter-spacing: 0.1px
+        text-align: center
+        color: #a6a6a6
+/* Base for label styling */
+
+.default-graph
+    .chart
+        padding-top: 95px
+    .chart-fon
+        display: block
+        width: 100%
+        height: 220px
+        position: relative
+        overflow: hidden
+.trends
+    display: none
+    width: calc(100% - 350px)
+    height: auto
+    position: relative
+    float: left
+    z-index: 102
+    box-shadow: 0 2px 30px 0 rgba(0, 0, 0, 0.1)
+    .chart-fon
+        display: block
+        width: 100%
+        height: 232px
+        position: relative
+        overflow: hidden
+    .chart__wrap
+        height: 350px
+        background-color: #ffffff
+    .chart
+        padding-top: 95px
+        margin-bottom: 0px
+.channel__item,.channel__all,.channel__all_trends
+    label
+        font-family: "ProximaNova-Regular"
+        font-size: 12px
+        font-weight: normal
+        font-style: normal
+        font-stretch: normal
+        line-height: 20px
+        letter-spacing: 0.1px
+        text-align: left
+        color: #a6a6a6
+        text-transform: none
+.off-trend
+    background: url("/assets/img/trends-off.svg") no-repeat
+    background-size: contain
+.on-trend
+    background: url("/assets/img/trends-on.svg") no-repeat
+    background-size: contain
+.trends-mask
+    display: none
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    z-index: 101
+    opacity: 0.65
+    background-color: #ffffff
+.main_table__row
+    .current-day
+        color: #f38c2c
+.right-main
+    display: table-cell
+    position: relative
+    float: left
+    width: calc(100% - 350px)
+    padding: 0px
+    height: auto
+.main_table__cell
+    .weeks-fon
+        display: block
+        width: 100%
+        height: auto
+        vertical-align: middle
+        span
+            display: block
+            width: 100%
+            font-size: 9px
+            height: auto
+            margin: 0px 0px 4px 0px
+            line-height: 10px
+        p
+            font-size: 11px
+
+.scroll-fixed-right
+    margin: 0px
+    position: fixed
+    top: 50px
+    width: calc(100% - 350px)
+    left: 350px
+    z-index: 13
+    &:after
+        content: ""
+        position: absolute
+        display: block
+        width: 20px
+        height: 100%
+        left: 0px
+        top: 0
+        z-index: 10
+        opacity: .04
+        background-image: linear-gradient(to left, rgba(238, 238, 238, 0), #000000)
+    .right-up-left
+        overflow: hidden
+    .chart-val-two
+        bottom: 148px
+    .chart-val-one
+        bottom: 74px
+    .chart-line
+        bottom: -36px
+    .right-up-data
+        position: relative
+        z-index: 11
+        &:after
+            content: ""
+            position: absolute
+            display: block
+            width: 100%
+            height: 20px
+            bottom: -20px
+            left: 0px
+            z-index: 11
+            opacity: .04
+            background-image: linear-gradient(to top, rgba(238, 238, 238, 0), #000000)
+    .chart__wrap
+        height: 275px
+    .chart
+        border-bottom: 1px solid #f0f0f0
+        padding-top: 70px
+    .confirm-switch
+        z-index: 13
+    .chart-val-max
+        top: 83px
+    .chart-val-midle
+        bottom: 54px
+.trends-fixed
+    position: fixed
+    top: 50px
+    right: 0px
+.scroll-fixed-right-without-graph
+    height: 100px
+    margin: 0px 0px 0px 0px 
+    .right-up-left
+        overflow: hidden
+    .main-current-day
+        display: none
+    .confirm-switch
+        top: 100px !important
+.scroll-fixed-right-without-graph-start
+    margin: 0px
+    height: auto
+    

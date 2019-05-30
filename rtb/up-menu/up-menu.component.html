@@ -1,0 +1,7 @@
+<div class="container page-actions">
+  <div class="top__info">
+    <a href="#" class="top_left_item" *ngFor="let item of menu; let i = index;" [ngClass]="(menu[i].select) ? 'm--active' : ''" [textContent]="menu[i].title"
+      rtb-rooftop-item [attr.id]="menu[i].id" [attr.index]="i" (sendMsgEvent)="SelectRooftops($event)"></a>
+
+  </div>
+</div>

@@ -1,0 +1,266 @@
+
+.popup__table_object {
+  position: fixed;
+  display: none;
+  left: calc(50% - 167px);
+  top: 13vh;
+  width: 334px;
+  height: auto;
+  padding: 20px;
+  box-sizing: border-box;
+  background: #fff;
+  z-index: 15;
+  transform: scale(0.9);
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.popup__table_object.m--fade {
+  transform: scale(1);
+  opacity: 1;
+}
+.popup__table_object .table_object__content {
+  display: block;
+}
+.table_object__content {
+  display: none;
+}
+.table_object__product {
+  font-family: "ProximaNova-SemiBold";
+}
+.table_object__creative {
+  display: block;
+  width: 100%;
+  height: 280px;
+  /* overflow-x: hidden; */
+  /* overflow-y: auto; */
+  /* position: static; */
+  margin: 15px auto;
+}
+.table_object__creative_item_one .link-pptx {
+  font-family: "ProximaNova-Regular";
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 20px;
+  letter-spacing: 0.3px;
+  text-align: center;
+  color: #ffffff;
+}
+.table_object__creative_item_one p
+ {
+  font-size: 13px;
+  text-align: center;
+  margin: 5px 0px 0px 0px;
+  padding: 0px;
+  line-height: 10px;
+  font-family: ProximaNova-Regular;
+ }
+ .table_object__creative .row
+{
+  margin: 0px !important;
+}
+  .table_object__creative_item
+  {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    margin: 0px 0px 20px 0px;
+
+  }
+  .table_object__creative_item_one
+  {
+    position: relative;
+    display: flex;
+    width: 290px;
+    height: 430px;
+    margin: 0px auto;
+    align-items: center;
+    justify-content: center;
+  }
+  .table_object__creative_item_one iframe{
+   border: none;
+  }
+  .table_object__creative_item_one embed{
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .table_object__creative_item_one img{
+    display: block;
+   
+    margin: 0px auto;
+    max-width: 100%;
+    max-height: 100%;
+    cursor: pointer;
+  }
+  .table_object__creative_item embed
+  {
+display: block;
+width: 100%;
+height: 100%;
+  }
+  .table_object__creative_item img
+  {
+display: block;
+width: 100%;
+min-height: 74px;
+  }
+  .table_object__creative_item p
+  {
+    font-size: 12px;
+    color: #000000;
+    text-align: justify;
+    margin: 0px;
+    font-family: "ProximaNova-Regular";
+  }
+  .table_object__creative iframe {
+    border: none;
+  }
+
+  .fotorama-fon
+  {
+   position: relative;
+    width: 290px;
+    height: 429px;
+    background-color: #262626;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .fotorama__nav, .fotorama__stage
+  {
+        /* overflow: ; */
+        overflow-y: initial;
+        overflow-x: hidden;
+  }
+ .fotorama-item
+ {
+  width: 290px;
+  height: 430px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+ }
+ .fotorama-item iframe
+ {
+   border: none;
+ }
+ .fotorama-item p
+ {
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  width: 290px;
+  height: 10px;
+  font-size: 13px;
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+  line-height: 10px;
+  font-family: ProximaNova-Regular;
+ }
+
+ .info-file
+ {
+   /*display: block;*/
+   width: 100%;
+   height: 100%;
+   position: relative;
+ }
+
+ .info-file embed
+ {
+   display: block;
+   width: 100%;
+   height: 100%;
+ }
+
+ .table_object__line {
+  margin-bottom: 10px;
+}
+.table_object__line:after,
+.table_object__line:before {
+  content: " ";
+  display: table;
+}
+.table_object__line:after {
+  clear: both;
+}
+.table_object__left {
+  float: left;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: "ProximaNova-SemiBold";
+}
+.table_object__right {
+  float: right;
+  font-size: 13px;
+  color: #a6a6a6;
+  font-weight: 700;
+  font-family: "ProximaNova-Regular";
+}
+.table_object__text p {
+  font-size: 13px;
+  color: #a6a6a6;
+  font-weight: 700;
+  font-family: "ProximaNova-Regular";
+}
+.table_object__title {
+  font-size: 14px;
+  font-weight: 700;
+  font-family: "ProximaNova-SemiBold";
+}
+.table_object {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  height: 10px;
+  line-height: 10px;
+  font-weight: 700;
+  z-index: 10;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background 0.15s;
+}
+.table_object .table_object-left {
+  border-radius: 10px 0px 0px 10px;
+}
+.table_object .table_object-right {
+  border-radius: 0px 10px 10px 0px;
+}
+.table_object .table_object-left,
+.table_object .table_object-right {
+  display: inline-block;
+  height: 10px;
+  background: #e16f2d;
+}
+.table_object .table_object-center {
+  display: inline-block;
+  width: 80px;
+  height: 10px;
+  padding: 0px 10px;
+  color: #e16f2d;
+  font-size: 13px;
+  font-family: "ProximaNova-SemiBold";
+}
+.table_object .table_object-center span {
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

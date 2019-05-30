@@ -1,0 +1,55 @@
+<nav id="context-menu" class="context-menu">
+    <ul class="context-menu__items" *ngIf="typItem === 'parent'">
+      
+        <li class="context-menu__item" *ngIf="!isMedia">
+            <a href="#" class="context-menu__link" action="add-product-categori" [attr.categories-id]="dataItemMenu.i">
+                Add product</a>
+        </li>
+        <li class="context-menu__item" *ngIf="isMedia">
+            <a href="#" class="context-menu__link" action="add-media" [attr.categories-id]="dataItemMenu.i">
+                Media calendar</a>
+        </li>
+
+        <li class="context-menu__item" >
+            <a href="#" class="context-menu__link" action="rename" [attr.categories-id]="dataItemMenu.i">
+                Rename</a>
+        </li>
+        <li class="context-menu__item" >
+            <a href="#" class="context-menu__link" action="remove-category" [attr.categories-id]="dataItemMenu.i">
+                Remove</a>
+        </li>
+       
+    </ul>
+    <ul class="context-menu__items" *ngIf="typItem === 'subparent'">
+
+        <li class="context-menu__item" *ngIf="tableData.settings.viewType === 'daysOfMonth'">
+            <a href="#" class="context-menu__link" [attr.action]="(dataItemMenu.subproducts) ? 'remove-product' : 'remove'" edit-mode-item
+                [attr.categories-id]="dataItemMenu.i" [attr.products-id]="dataItemMenu.u" [attr.subproducts-id]="-1">
+                Remove</a>
+        </li>
+        <li class="context-menu__item">
+            <a href="#" class="context-menu__link" [attr.action]="(dataItemMenu.subproducts) ? 'add-product' : 'add-campaign'" edit-mode-item
+                [attr.categories-id]="dataItemMenu.i" [attr.products-id]="dataItemMenu.u" [attr.subproducts-id]="-1">
+                Add campaign</a>
+        </li>
+        <li class="context-menu__item" *ngIf="tableData.settings.viewType === 'daysOfMonth'">
+            <a href="#" class="context-menu__link" action="rename-product" edit-mode-item [attr.categories-id]="dataItemMenu.i" [attr.products-id]="dataItemMenu.u"
+                [attr.subproducts-id]="-1">
+                Rename</a>
+        </li>
+        <li class="context-menu__item" *ngIf="tableData.settings.viewType === 'daysOfMonth' && dataItemMenu.subproducts">
+            <a href="#" class="context-menu__link" action="change-summ" edit-mode-item [attr.categories-id]="dataItemMenu.i" [attr.products-id]="dataItemMenu.u"
+                [attr.subproducts-id]="-1">
+                Change total budget</a>
+        </li>
+    </ul>
+    <ul class="context-menu__items" *ngIf="typItem === 'product'">
+
+        <li class="context-menu__item">
+            <a href="#" class="context-menu__link" action="remove" edit-mode-item [attr.categories-id]="dataItemMenu.i" [attr.products-id]="dataItemMenu.u"
+                [attr.subproducts-id]="dataItemMenu.g">
+                Remove</a>
+        </li>
+
+    </ul>
+</nav>

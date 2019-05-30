@@ -1,0 +1,334 @@
+<div class="time-line">
+
+  <div class="main_table__wrap">
+    <div class="main_table">
+      <div class="confirm-switch">
+        <div class="main_table__header" [ngSwitch]="viewTable">
+          <div class="main_table__header_fon" *ngSwitchCase="0">
+            <div class="table_weeks">
+              <ng-template ngFor let-item [ngForOf]="titlesHeader" let-i="index" [ngForTrackBy]="trackByIndex">
+                <div class="table_weeks_item" [ngClass]="titlesHeader[i].class">
+                  <span [textContent]="titlesHeader[i].week" [ngClass]="titlesHeader[i].classWeek"></span>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+          <div class="main_table__header_fon" *ngSwitchCase="1">
+            <div class="table_weeks">
+              <ng-template ngFor let-item [ngForOf]="weeks" let-i="index" [ngForTrackBy]="trackByIndex">
+                <div class="table_weeks_item">
+                  <span [textContent]="item.month"></span>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+          <div class="main_table__header_fon" *ngSwitchCase="2">
+
+            <div class="table_weeks">
+              <ng-template ngFor let-item [ngForOf]="titlesHeader" let-i="index" [ngForTrackBy]="trackByIndex">
+                <div class="table_weeks_item">
+                  <span [textContent]="item.quarter"></span>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main_table__body js-table-template">
+        <div class="main_table__lines" [ngSwitch]="viewTable">
+          <ng-template ngFor let-item [ngForOf]="titlesHeader" [ngForTrackBy]="trackByIndex" *ngSwitchCase="0">
+            <div class="vertical-line" [ngClass]="item.class"></div>
+          </ng-template>
+          <ng-template ngFor let-item [ngForOf]="weeks" [ngForTrackBy]="trackByIndex" *ngSwitchCase="1">
+            <div class="vertical-line"></div>
+          </ng-template>
+          <ng-template ngFor let-item [ngForOf]="titlesHeader" [ngForTrackBy]="trackByIndex" *ngSwitchCase="2">
+            <div class="vertical-line"></div>
+          </ng-template>
+        </div>
+
+        <ng-template ngFor let-item [ngForOf]="Table.categories" let-i="index" [ngForTrackBy]="trackById">
+          <div class="main_table__row m--hidden" table-item [attr.data-line]="Table.categories[i].id" [attr.lenproducts]="Table.categories[i].products.length"
+            parent="parent" [attr.index]="i + 1" [attr.categories-id]="i" [enabledClick]="true" [parentId]="Table.categories[i].id"
+            [parent]="'parent'">
+
+            <div class="table_categories" [attr.data-line]="Table.categories[i].id">
+
+              <div class="table_object table_object_head" [attr.data-line]="Table.categories[i].id" [ngStyle]="{width : Table.categories[i].width,backgroundColor:Table.categories[i].color,left:Table.categories[i].margin}">
+
+                <div class="table_object-center_categori">
+
+                  <span [textContent]="'$ ' + item.priceText" [ngStyle]="{color : Table.categories[i].color}">
+
+                  </span>
+
+                </div>
+                <div class="table_object-center_count" [ngStyle]="{backgroundColor : Table.categories[i].color}">
+                  <span [textContent]="Table.categories[i].count"></span>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+          <ng-template ngFor let-itemsub [ngForOf]="Table.categories[i].products" let-u="index" [ngForTrackBy]="trackById">
+            <div class="main_table__row" table-item [attr.data-line]="Table.categories[i].products[u].id" [attr.lenproducts]="(Table.categories[i].products[u].subproducts) ? Table.categories[i].products[u].subproducts.length : 0"
+              parent="subparent" [parent]="'subparent'" [attr.categories-id]="i" [attr.products-id]="u" [attr.subproducts-id]="-1"
+              [ngStyle]="{display: (Table.categories[i].open) ? 'block' : 'none'}" [enabledClick]="(Table.categories[i].products[u].subproducts && tableData.settings.viewType === 'daysOfMonth' || Table.categories[i].products[u].subproducts && Table.categories[i].products[u].expenses === undefined && tableData.settings.viewType !== 'daysOfMonth') ? true : false"
+              [parentId]="Table.categories[i].products[u].id">
+              <!-- [ngStyle]="{display: 'none'}"-->
+
+              <div class="table_object_container_fon" *ngIf="Table.categories[i].products[u].expenses !== undefined && tableData.settings.viewType === 'daysOfMonth'">
+                <ng-template ngFor let-expen [ngForOf]="Table.categories[i].products[u].expenses[0].flightDate" let-f="index" [ngForTrackBy]="trackByIndex">
+                  <div class="table_object_container" [ngStyle]="{left:Table.categories[i].products[u].expenses[0].flightDate[f].margin}">
+                    <div class="table_object_item_fon">
+                      <div class="table_object m--hasDetails" *ngIf="Table.categories[i].products[u].expenses[0].flightDate[f].showLine" [attr.dataobjectid]="Table.categories[i].products[u].expenses[0].id"
+                        [attr.parent-data-line]="Table.categories[i].products[u].id" [attr.flightDate-index]="f" [attr.cat-index]="i"
+                        [attr.data-length]="Table.categories[i].products[u].expenses[0].flightDate[f].dataLength" [ngStyle]="{width : Table.categories[i].products[u].expenses[0].flightDate[f].widthContainer,backgroundColor:Table.categories[i].products[u].expenses[0].color}">
+                        <div class="table_object-center_expenses">
+                          <span [textContent]="'$ ' + Table.categories[i].products[u].expenses[0].flightDate[f].priceText" [ngStyle]="{color : Table.categories[i].products[u].expenses[0].color}">
+                          </span>
+                        </div>
+                      </div>
+
+
+                    </div>
+                  </div>
+                </ng-template>
+              </div>
+
+              <div class="table_object_container_fon" *ngIf="Table.categories[i].products[u].expenses !== undefined && tableData.settings.viewType !== 'daysOfMonth'">
+                <ng-template ngFor let-expen [ngForOf]="Table.categories[i].products[u].expenses" let-f="index" [ngForTrackBy]="trackByIndex">
+                  <div class="table_object_container" [ngStyle]="{left:Table.categories[i].products[u].expenses[f].margin}">
+                    <div class="table_object_item_fon">
+                      <div class="table_object m--hasDetails" *ngIf="Table.categories[i].products[u].expenses[f].showLine" [attr.dataobjectid]="Table.categories[i].products[u].id"
+                        [attr.parent-data-line]="Table.categories[i].products[u].id" [attr.flightDate-index]="f" [attr.cat-index]="i"
+                        [attr.data-length]="Table.categories[i].products[u].expenses[f].dataLength" [ngStyle]="{width : Table.categories[i].products[u].expenses[f].widthContainer,backgroundColor:Table.categories[i].products[u].expenses[f].color}">
+
+
+
+                        <div class="table_object-center_expenses">
+
+                          <span [textContent]="'$ ' + Table.categories[i].products[u].expenses[f].priceText" [ngStyle]="{color : Table.categories[i].products[u].expenses[f].color}">
+
+                          </span>
+                        </div>
+
+
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </div>
+
+              <div class="table_object_container_fon table_object_product" *ngIf="Table.categories[i].products[u].subproducts && tableData.settings.viewType === 'daysOfMonth'"
+              style="display:none">
+
+                <div class="table_object_container" [ngStyle]="{left: Table.categories[i].products[u].margin}">
+                  <div class="table_object_item_fon">
+                    <div class="table_object m--hasDetails" *ngIf="Table.categories[i].products[u].showLine" [attr.data-length]="Table.categories[i].products[u].subproducts.length"
+                      [ngStyle]="{width : Table.categories[i].products[u].widthContainer,backgroundColor:Table.categories[i].products[u].color}">
+
+                      <div class="table_object-center_product" [ngStyle]="{color : Table.categories[i].products[u].color}">
+
+                        <span [textContent]="'$ ' + Table.categories[i].products[u].priceText" [ngStyle]="{color : Table.categories[i].products[u].color}">
+
+                        </span>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="table_object_container_fon table_object_product" *ngIf="Table.categories[i].products[u].subproducts && Table.categories[i].products[u].expenses === undefined && tableData.settings.viewType !== 'daysOfMonth'"
+              style="display:none">
+
+                <div class="table_object_container" [ngStyle]="{left: Table.categories[i].products[u].margin}">
+                  <div class="table_object_item_fon">
+                    <div class="table_object m--hasDetails" *ngIf="Table.categories[i].products[u].showLine" [attr.data-length]="Table.categories[i].products[u].subproducts.length"
+                      [ngStyle]="{width : Table.categories[i].products[u].widthContainer,backgroundColor:Table.categories[i].products[u].color}">
+
+                      <div class="table_object-center_product" [ngStyle]="{color : Table.categories[i].products[u].color}">
+
+                        <span [textContent]="'$ ' + Table.categories[i].products[u].priceText" [ngStyle]="{color : Table.categories[i].products[u].color}">
+
+                        </span>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+            <div class="main_table__row" table-item [attr.data-line]="Table.categories[i].products[u].id" [attr.lenproducts]="(Table.categories[i].products[u].subproducts) ? Table.categories[i].products[u].subproducts.length : 0"
+              parent="subparent" [parent]="'subparent'" [attr.categories-id]="i" [attr.products-id]="u" [attr.subproducts-id]="-1"
+              *ngIf="Table.categories[i].products[u].subproducts && Table.categories[i].products[u].expenses !== undefined && tableData.settings.viewType !== 'daysOfMonth'"
+              [ngStyle]="{display: (Table.categories[i].open) ? 'block' : 'none'}" [enabledClick]="true" [parentId]="Table.categories[i].products[u].id">
+              <!--[ngStyle]="{display: 'none'}"-->
+
+              <div class="table_object_container_fon table_object_product" style="display:none">
+
+                <div class="table_object_container" [ngStyle]="{left: Table.categories[i].products[u].margin}">
+                  <div class="table_object_item_fon">
+                    <div class="table_object m--hasDetails" *ngIf="Table.categories[i].products[u].showLine" [attr.data-length]="Table.categories[i].products[u].subproducts.length"
+                      [ngStyle]="{width : Table.categories[i].products[u].widthContainer,backgroundColor:Table.categories[i].products[u].color}">
+
+                      <div class="table_object-center_product" [ngStyle]="{color : Table.categories[i].products[u].color}">
+
+                        <span [textContent]="'$ ' + Table.categories[i].products[u].priceSubproductsText" [ngStyle]="{color : Table.categories[i].products[u].color}">
+
+                        </span>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+            <ng-template ngFor let-itemproduct [ngForOf]="Table.categories[i].products[u].subproducts" let-g="index" [ngForTrackBy]="trackById">
+              <div class="main_table__row" table-item [attr.data-line]="Table.categories[i].products[u].subproducts[g].id" parent="product"
+                [attr.categories-id]="i" [attr.products-id]="u" [attr.subproducts-id]="g" [ngStyle]="{display: (Table.categories[i].open) ? 'block' : 'none'}" [enabledClick]="false">
+                <!-- [ngStyle]="{display: 'none'}"-->
+                <div class="table_object_container_fon" *ngIf="tableData.settings.viewType === 'daysOfMonth'">
+                  <ng-template ngFor let-expen [ngForOf]="Table.categories[i].products[u].subproducts[g].expenses[0].flightDate" let-f="index"
+                    [ngForTrackBy]="trackByIndex">
+                    <div class="table_object_container" [ngStyle]="{left:Table.categories[i].products[u].subproducts[g].expenses[0].flightDate[f].margin}">
+                      <div class="table_object_item_fon">
+                        <div class="table_object m--hasDetails" *ngIf="Table.categories[i].products[u].subproducts[g].expenses[0].flightDate[f].showLine"
+                          [attr.dataobjectid]="Table.categories[i].products[u].subproducts[g].expenses[0].id" [attr.flightDate-index]="f"
+                          [attr.parent-data-line]="Table.categories[i].products[u].subproducts[g].id" [attr.cat-index]="i"
+                          [attr.data-length]="Table.categories[i].products[u].subproducts[g].expenses[0].flightDate[f].dataLength"
+                          [ngStyle]="{width : Table.categories[i].products[u].subproducts[g].expenses[0].flightDate[f].widthContainer,backgroundColor:Table.categories[i].products[u].subproducts[g].expenses[0].color}">
+                          <div class="table_object-center_expenses">
+
+                            <span [textContent]="'$ ' + Table.categories[i].products[u].subproducts[g].expenses[0].flightDate[f].priceText" [ngStyle]="{color : Table.categories[i].products[u].subproducts[g].expenses[0].color}">
+
+                            </span>
+                          </div>
+
+
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </div>
+
+                <div class="table_object_container_fon" *ngIf="tableData.settings.viewType !== 'daysOfMonth'">
+                  <ng-template ngFor let-expen [ngForOf]="Table.categories[i].products[u].subproducts[g].expenses" let-f="index" [ngForTrackBy]="trackByIndex">
+                    <div class="table_object_container" [ngStyle]="{left:Table.categories[i].products[u].subproducts[g].expenses[f].margin}">
+                      <div class="table_object_item_fon">
+                        <div class="table_object m--hasDetails" *ngIf="Table.categories[i].products[u].subproducts[g].expenses[f].showLine" [attr.dataobjectid]="Table.categories[i].products[u].subproducts[g].id"
+                          [attr.parent-data-line]="Table.categories[i].products[u].subproducts[g].id" [attr.flightDate-index]="f"
+                          [attr.cat-index]="i" [attr.data-length]="Table.categories[i].products[u].subproducts[g].expenses[f].dataLength"
+                          [ngStyle]="{width : Table.categories[i].products[u].subproducts[g].expenses[f].widthContainer,backgroundColor:Table.categories[i].products[u].subproducts[g].expenses[f].color}">
+                          <div class="table_object-center_expenses">
+
+                            <span [textContent]="'$ ' + Table.categories[i].products[u].subproducts[g].expenses[f].priceText" [ngStyle]="{color : Table.categories[i].products[u].subproducts[g].expenses[f].color}">
+
+                            </span>
+                          </div>
+
+
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </div>
+              </div>
+            </ng-template>
+
+
+
+
+          </ng-template>
+          <div class="main_table__row" table-item [attr.data-line]="'add-' + i" [attr.lenproducts]="0" parent="not" [attr.categories-id]="i"
+          [ngStyle]="{display: (Table.categories[i].open) ? 'block' : 'none'}" [enabledClick]="false"  *ngIf="Table.categories[i].mediaCategorie === 0 && rights.canManageOwnBudgets === 1 && tableData.settings.viewType === 'daysOfMonth'">
+
+
+            <div class="table_object_container_fon">
+              <div class="table_object_container" [ngStyle]="{left: '0px'}">
+                <div class="table_object_item_fon">
+
+
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+
+        </ng-template>
+
+        <div class="main_table__row m--hidden add-categori-main" table-item data-line="add-categori" [attr.lenproducts]="0" parent="parent"
+          [enabledClick]="false" [parent]="'parent'" [ngStyle]="{display: (rights.canManageOwnBudgets === 1 && tableData.settings.viewType === 'daysOfMonth') ? 'block' : 'none'}">
+
+          <div class="table_categories" data-line="add-categori">
+            <div class="add-categori-body" [ngStyle]="{paddingLeft: colors.margin + 'px'}">
+              <div class="list-color">
+                <div class="list-color-body">
+                  <ng-template ngFor let-itemColor [ngForOf]="colors.list" [ngForTrackBy]="trackByIndex" let-c="index">
+
+                    <div class="item-color" (click)="SelectColor(c)" [ngStyle]="{backgroundColor: colors.list[c] }" [ngClass]="(c === colors.selectItem) ? 'select-color' : ''"></div>
+                  </ng-template>
+                </div>
+              </div>
+             <!-- <div class="set-color-categori">
+                <span>#</span>
+                <input [value]="colors.color" #ignoredInput [cpIgnoredElements]="[ignoredButton, ignoredInput]" [cpPosition]="'top'" [(cpToggle)]="toggle"
+                  [(colorPicker)]="color" (cpToggleChange)="cpToggleChange($event)" (colorPickerChange)="onChangeColor($event)"
+                  [cpFallbackColor]="'#000000'"  />
+                <div class="icon-color" #ignoredButton (click)="toggle=!toggle">
+                </div>
+              </div>-->
+              <div class="check-media-categori" [ngStyle]="{display:(blockEditMedia) ? 'none' : 'inline-block'}">
+                <input type="checkbox" id="add-categori-value" />
+                <label for="add-categori-value">Media Category</label>
+              </div>
+              <div class="information" [ngStyle]="{display:(blockEditMedia) ? 'none' : 'inline-block'}">
+
+              </div>
+              <div class="information-mask">
+                <div class="information-body">
+                  <p>Media category is a type of product categories has created special for TV and Radio campaigns. Here are
+                    some features:
+                    <br> – All products into Media category will be created for all dealerships.
+                    <br> – You will be able to set up a budget per product and then split it between the Dealerships by interest
+                    <br> – Additional fields for GRPs and count of Spots
+                    <br> – By default, every product has the New campaign but you will be able to change it or create the other
+                    one.
+                  </p>
+                </div>
+              </div>
+              <span class="save-categori">Save</span>
+            </div>
+            <!--  <div class="table_object table_object_head" [attr.data-line]="Table.categories[i].id" [ngStyle]="{width : Table.categories[i].width,backgroundColor:Table.categories[i].color,left:Table.categories[i].margin}">
+
+          <div class="table_object-center_categori">
+
+            <span [textContent]="'$ ' + item.priceText" [ngStyle]="{color : Table.categories[i].color}">
+
+            </span>
+
+          </div>
+          <div class="table_object-center_count" [ngStyle]="{backgroundColor : Table.categories[i].color}">
+            <span [textContent]="Table.categories[i].count"></span>
+          </div>
+
+        </div>-->
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

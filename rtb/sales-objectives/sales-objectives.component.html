@@ -1,0 +1,44 @@
+<div class="sales m--fade" [ngStyle]="{display:display}">
+    <div class="sales-closed"></div>
+    <h3>Sales Objectives</h3>
+    <select id="select-year">
+        <ng-template ngFor let-item [ngForOf]="years" let-i="index" let-last="last">
+            <option [textContent]="years[i]"></option>
+            {{ last === true ? callOnLastIteration() : null}}
+        </ng-template>
+    </select>
+    <div class="sales-body">
+        <div class="preloader-body-mini-fon"></div>
+        <div class="preloader-body-mini"></div>
+        <div class="row">
+            <div class="col-sl-6">
+                <h6>New</h6>
+                <div class="row">
+                    <ng-template ngFor let-expen [ngForOf]="sales.new" let-i="index" [ngForTrackBy]="trackByIndex">
+
+                        <div class="col-sl-4 sales-item-value">
+                            <p [textContent]="actions.months[i]"></p>
+                            <input type="number" min="0" [(ngModel)]="sales.new[i].value" sales-item-value />
+                        </div>
+                    </ng-template>
+
+                </div>
+            </div>
+            <div class="col-sl-6">
+                <h6>Used</h6>
+                <div class="row">
+                    <ng-template ngFor let-expen [ngForOf]="sales.used" let-i="index" [ngForTrackBy]="trackByIndex">
+
+                        <div class="col-sl-4 sales-item-value">
+                            <p [textContent]="actions.months[i]"></p>
+                            <input type="number" min="0" [(ngModel)]="sales.used[i].value" sales-item-value />
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+        <div class="save-sales">Save</div>
+    </div>
+    <div class="preloader-mini-fon"></div>
+    <div class="preloader-mini"></div>
+</div>

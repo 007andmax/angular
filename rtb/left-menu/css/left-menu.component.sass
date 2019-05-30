@@ -1,0 +1,766 @@
+.input-group
+    position: relative
+    display: -ms-flexbox
+    display: flex
+    width: 100%
+    .form-control
+        position: relative
+        z-index: 2
+        -ms-flex: 1 1 auto
+        flex: 1 1 auto
+        width: 100%
+        margin-bottom: 0
+        font-family: ProximaNova-Regular
+.pl-0
+    padding-left: 0px !important
+.pr-0
+    padding-right: 0px !important
+    border: none
+.mr-0
+    margin-right: 0px !important
+.ml-0
+    margin-left: 0px !important
+
+.search-new-product
+    display: none
+    width: 100%
+    height: auto
+    padding-left: 5px
+    h6
+        font-size: 16px
+        text-align: left
+        margin: 0px 0px 5px 0px
+        padding: 0px
+        font-family: ProximaNova-SemiBold
+    .input-group
+        display: inline-block !important
+        width: calc(100% - 85px)
+    input
+        display: block
+        width: 100%
+        height: auto
+    .search-new-product-error
+        display: none
+        width: 55px
+        height: auto
+        margin: 0px 0px 0px 10px
+        span
+            font-size: 12px
+            color: red
+            text-align: left
+            padding: 0px
+            margin: 0px
+            font-family: ProximaNova-Regular
+.search-product-create
+    position: absolute
+    display: none
+    width: 100%
+    height: 165px
+    top: 1px
+    left: 0px
+    z-index: 70
+    background: #fff
+    border: 1px solid #ddd
+    .search-product-create-closed
+        position: absolute
+        width: 16px
+        height: 16px
+        cursor: pointer
+        top: 10px
+        right: 10px
+        background: url("/assets/img/closed.svg") no-repeat
+        background-size: contain
+
+    h6
+        font-size: 1em
+        font-family: Arial,Helvetica,sans-serif
+        font-weight: 700
+        padding: .2em .4em
+        margin: .8em 0 .2em
+        line-height: 1.5
+    .search-product-create-select
+        display: block
+        width: 100%
+        height: auto
+        padding: 0em .4em
+        select
+            display: inline-block
+            background-color: #ffffff
+            font-size: 14px
+            border: 1px solid #ddd
+            height: 30px
+            vertical-align: middle
+            width: calc(100% - 65px)
+        button
+            display: inline-block
+            width: 50px
+            height: 30px
+            font-size: 14px
+            margin: 0px 0px 0px 10px
+            vertical-align: middle
+    .create-category
+        display: block
+        width: 100%
+        height: auto
+        padding: 0em .4em
+        button
+            display: block
+            width: 170px
+            height: 30px
+            font-size: 14px
+.info-expenses
+    display: flex
+    width: 100%
+    height: 49px
+    align-items: center
+    position: relative
+    border-top: 1px solid #f0f0f0
+    .info-expenses-fon
+        display: block
+        width: 100%
+        height: auto
+        padding: 0px 0px 0px 20px
+        span
+            display: inline-block
+            min-width: 10px
+            font-size: 10px
+            font-weight: normal
+            font-style: normal
+            font-stretch: normal
+            line-height: normal
+            letter-spacing: 0.2px
+            text-align: left
+            color: #b3b3b3
+            margin: 0px 20px 0px 0px
+            font-family: ProximaNova-Regular
+            vertical-align: middle
+            &:last-child
+                margin: 0px
+        .search-icon
+            display: inline-block
+            cursor: pointer
+            width: 16.5px
+            vertical-align: middle
+            margin: 0px 20px 0px 0px
+            height: 16.5px
+            background-color: #b3b3b3
+            -webkit-mask: url(/assets/img/search.svg) no-repeat
+            mask: url(/assets/img/search.svg) no-repeat
+            -webkit-mask-size: contain
+            mask-size: contain
+            &:hover
+                background-color: #f38c2c
+            
+.blur-all
+    filter: blur(5px)
+.menu-line-disabled,.product-line-disabled
+    background-color: #e6e6e6 !important
+.menu-line-selected,.product-line-selected
+    background-color: #f38c2c !important
+.menu-line-no-click
+    .tc__title,.tc__price,p,span
+        color: #e6e6e6 !important
+.left-main 
+    display: table-cell
+    width: 350px
+    height: auto
+    position: relative
+    background-color: #fff
+    padding: 0px
+    float: left
+    margin: 0px
+.table_control-edit-pannel
+    display: flex
+    width: 100%
+    height: auto
+    align-items: center
+    justify-content: space-between
+    position: relative
+    .table_control-edit-enabled
+        svg
+            path
+                fill: #f38c2c
+    .table_control-edit-pannel-left
+        display: flex
+        width: 100%
+        height: 36px
+        padding: 0px 0px 0px 20px
+        position: relative
+        align-items: center
+        .search-product-create-select
+            display: block
+            width: 100%
+            height: auto
+            padding: 0em .4em
+            select
+                display: inline-block
+                background-color: #ffffff
+                font-size: 14px
+                border: 1px solid #ddd
+                height: 30px
+                vertical-align: middle
+                width: calc(100% - 65px)
+            button
+                display: inline-block
+                width: 50px
+                height: 30px
+                font-size: 14px
+                margin: 0px 0px 0px 10px
+                vertical-align: middle
+        svg
+            display: inline-block
+            vertical-align: middle
+            width: 36px
+            height: 36px
+            path
+                fill: #f38c2c
+        h3,input,p
+            display: inline-block
+            vertical-align: middle
+            font-size: 14px
+            font-family: Oswald
+            min-width: 10px
+            font-weight: normal
+            font-style: normal
+            font-stretch: normal
+            line-height: 36px
+            letter-spacing: 0.8px
+            text-align: left
+            color: #a6a6a6
+            margin: 0px
+            text-transform: uppercase
+        input
+            width: 135px
+            text-transform: none
+            height: 20px
+            line-height: 20px
+            border: 1px solid #ffffff
+            background-color: #ffffff
+            font-family: ProximaNova-Regular
+            margin: 0px 0px 0px 15px
+        p
+            margin: 0px
+            font-size: 10px
+            color: #b3b3b3
+            letter-spacing: 0.2px
+            display: none
+            position: absolute
+            text-transform: none
+            top: -25px
+            left: 70px
+            font-family: ProximaNova-Regular
+        .item-left
+            display: flex
+           
+            cursor: pointer
+            float: left
+            align-content: center
+            justify-content: center
+            
+            margin: 0px 25px 0px 0px
+            &:last-child
+                margin: 0px
+            &:nth-child(1)
+                -webkit-mask: url(/assets/img/dollar.svg) no-repeat
+                mask: url(/assets/img/dollar.svg) no-repeat
+                -webkit-mask-size: contain
+                mask-size: contain
+                background-color: #b3b3b3
+                width: 9px
+                height: 19.5px
+            &:nth-child(2)
+                -webkit-mask: url(/assets/img/percent.svg) no-repeat
+                mask: url(/assets/img/percent.svg) no-repeat
+                -webkit-mask-size: contain
+                mask-size: contain
+                background-color: #b3b3b3
+                width: 16.5px
+                height: 16.5px
+            &:nth-child(3)
+                -webkit-mask: url(/assets/img/actual_budget.svg) no-repeat
+                mask: url(/assets/img/actual_budget.svg) no-repeat
+                -webkit-mask-size: contain
+                mask-size: contain
+                background-color: #b3b3b3
+                width: 16px
+                height: 22px
+            &:hover
+                background-color: #f2842f
+
+
+    #edit-product-have-name
+        display: none
+    #edit-product-not-name
+        display: table-cell
+    .table_control-edit-pannel-right
+        display: table-cell
+        width: 200px
+        height: 36px
+        text-align: right
+        margin: 0px 15px 0px 0px
+        .edit-pannel-color-icon
+            svg
+                path
+                    fill: #f38c2c
+        .search-product-create-closed
+            padding: 11px 0px 0px 16px
+            img
+                width: 16px
+                height: 16px
+        .edit-pannel-right-item
+            display: inline-block
+            width: 36px
+            height: 36px
+            vertical-align: middle
+            cursor: pointer
+            
+            &:nth-child(1)
+                -webkit-mask: url(/assets/img/uncollapse.svg) no-repeat
+                mask: url(/assets/img/uncollapse.svg) no-repeat
+                -webkit-mask-size: contain
+                mask-size: contain
+                background-color: #b3b3b3
+            &:nth-child(2)
+                -webkit-mask: url(/assets/img/sort-item.svg) no-repeat
+                mask: url(/assets/img/sort-item.svg) no-repeat
+                -webkit-mask-size: contain
+                mask-size: contain
+                background-color: #b3b3b3
+            
+            &:nth-child(3)
+                -webkit-mask: url(/assets/img/remove-items.svg) no-repeat
+                mask: url(/assets/img/remove-items.svg) no-repeat
+                -webkit-mask-size: contain
+                mask-size: contain
+                background-color: #b3b3b3
+            &:hover
+                background-color: #f2842f
+        
+.table_control-edit-choose
+    display: none
+    position: absolute
+    top: 1px
+    left: 0px
+    width: 349px
+    min-height: 198px
+    background-color: #ffffff
+    padding: 20px
+    z-index: 12
+    border-bottom: solid 1px #f0f0f0
+    h3
+        height: 12px
+        font-family: ProximaNova-Regular
+        font-size: 10px
+        font-weight: normal
+        font-style: normal
+        font-stretch: normal
+        line-height: normal
+        letter-spacing: 0.2px
+        text-align: left
+        color: #b3b3b3
+        margin: 0px
+    button
+        width: 155px
+        height: 50px
+        border: 1px solid #262626
+        border-radius: 3px
+        background-color: #262626
+        font-family: Oswald
+        text-transform: uppercase
+        font-size: 12px
+        font-weight: normal
+        font-style: normal
+        font-stretch: normal
+        line-height: normal
+        letter-spacing: 0.8px
+        text-align: center
+        color: #f38c2c
+    .edit-choose-select
+        display: block
+        width: 100%
+        height: auto
+        margin: 20px 0px 25px 0px
+    .edit-choose-select-product
+        width: 100%
+        height: auto
+        margin: 30px 0px 25px 0px
+        padding: 0px 0px 0px 40px
+        select
+            display: table-cell
+            width: 241px
+            height: 40px
+            background-color: #ffffff
+            border: solid 1px #e5e5e5
+            padding: 0px 0px 0px 10px
+            font-family: ProximaNova-Regular
+            font-size: 14px
+            font-weight: normal
+            font-style: normal
+            font-stretch: normal
+            line-height: normal
+            letter-spacing: 0.3px
+            text-align: left
+            color: #262626
+    .container 
+        display: inline-block
+        position: relative
+        padding-left: 40px
+        width: 100px
+        cursor: pointer
+        font-family: ProximaNova-Regular
+        font-size: 13px
+        font-weight: normal
+        font-style: normal
+        font-stretch: normal
+        line-height: 26px
+        letter-spacing: 0.3px
+        text-align: left
+        color: #666666
+        -webkit-user-select: none
+        -moz-user-select: none
+        -ms-user-select: none
+        user-select: none
+        &:nth-child(2)
+            margin: 0px 0px 0px 50px
+        .checkmark
+            &:after 
+                top: calc(50% - 6px)
+                left: calc(50% - 6px)
+                width: 12px
+                height: 12px
+                border-radius: 50%
+                background: #f38c2c
+        input 
+            position: absolute
+            opacity: 0
+            &:checked ~ .checkmark 
+                background-color: #ffffff
+                border: solid 1px #f38c2c
+                
+                
+            &:checked ~ .checkmark:after 
+                display: block
+                
+            
+    .checkmark 
+        position: absolute
+        top: 0
+        left: 0
+        height: 24px
+        width: 24px
+        background-color: #fff
+        border: solid 1px #f0f0f0
+        border-radius: 50%
+        &:after 
+            content: ""
+            position: absolute
+            display: none
+            
+.info-expense-enabled
+    path
+        fill: #e6e6e6 !important
+    h3
+        color: #e6e6e6 !important
+.tooltip-categories
+    position: absolute
+    z-index: 1070
+    display: none
+    transition: opacity .15s linear
+    top: 30px
+    right: -260px
+    width: 250px
+    padding: 15px
+    margin: 0px
+    border: 1px solid rgba(0, 0, 0, 0.15)
+    border-radius: 4px
+    background-color: #fff
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175)
+    &:after,&:before
+        content: "\2666"
+        font-family: monospace
+        font-size: 45px
+        line-height: 45px
+        text-align: center
+        position: absolute
+        overflow: hidden
+        width: 50px
+        height: 45px
+        -moz-user-select: -moz-none
+        -khtml-user-select: none
+        -webkit-user-select: none
+        user-select: none
+    &:before 
+        color: #ffffff
+    &:after 
+        color: #ffffff
+    p
+        font-family: "ProximaNova-Regular"
+        font-size: 12px
+        margin: 0px
+        font-weight: normal
+        font-style: normal
+        font-stretch: normal
+        line-height: normal
+        letter-spacing: 0.1px
+        text-align: left
+        color: #a6a6a6
+.leftArrow
+    &:before,&:after 
+        top: 50%
+        left: -25px
+        margin-top: -22px
+        clip: rect(0px, 25px, 45px, 0px)
+    &:before 
+        -moz-text-shadow:    -4px 0px 12px rgba(0, 0, 0, 0.175)
+        -webkit-text-shadow: -4px 0px 12px rgba(0, 0, 0, 0.175)
+        text-shadow:        -4px 0px 12px rgba(0, 0, 0, 0.175)
+    &:after 
+        left: -24px
+.add-product
+    display: none
+    border-bottom: 1px solid #f0f0f0
+    border-right: 1px solid #f0f0f0
+    .add-product-icon
+        width: 10px
+        height: 11px
+        background-color: #b3b3b3
+        background: url(/assets/img/plus.svg) no-repeat !important
+        background-size: contain
+        position: absolute
+        top: 19px
+        left: 20px
+        z-index: 9
+    .add-product-hit
+        display: flex
+        position: relative
+        padding-left: 50px
+        height: 50px
+        align-items: center
+        justify-content: left
+        
+        span,input
+            font-family: "ProximaNova-Regular"
+            font-size: 13px
+            font-weight: normal
+            font-style: normal
+            font-stretch: normal
+            line-height: normal
+            letter-spacing: 0.2px
+            text-align: left
+            color: #b3b3b3
+        span
+            line-height: 50px
+            width: 299px
+        input
+            display: none
+            border: 1px solid #f0f0f0
+            border-radius: 3px
+    button
+        display: none
+        width: 60px
+        height: auto
+        margin: 0px 0px 0px 20px
+        font-family: ProximaNova-SemiBold
+        border-radius: 3px
+        background-color: #f9ab62
+        text-align: center
+        vertical-align: middle
+        cursor: pointer
+        font-family: Oswald
+        border: 1px solid #ffffff
+        font-size: 10px
+        font-weight: normal
+        font-style: normal
+        font-stretch: normal
+        line-height: 22px
+        letter-spacing: 0.7px
+        text-align: center
+        color: #ffffff
+        text-transform: uppercase
+        &:hover
+            background-color: #f38c2c
+    .closed
+        display: none
+        width: 20px
+        height: 20px
+        background-color: #d8d8d8
+        -webkit-mask: url(/assets/img/closedAddCategori.svg) no-repeat
+        mask: url(/assets/img/closedAddCategori.svg) no-repeat
+        -webkit-mask-size: contain
+        mask-size: contain
+        cursor: pointer
+        margin: 0px 0px 0px 20px
+        vertical-align: middle
+.active-add-categoti
+    &:after
+        display: none !important        
+.add-categori
+    .plus
+        top: 40px 
+        width: 16px 
+        height: 16px 
+        background: url(/assets/img/plus.svg) no-repeat 
+        background-size: contain
+        position: absolute
+        display: block
+        right: 20px
+    &:after
+        display: none
+        top: 40px !important
+        width: 16px !important
+        height: 16px !important
+        background: url(/assets/img/plus.svg) no-repeat !important
+        background-size: contain
+    .menu-line
+        background-color: #d9d9d9
+    .add-categori-hit
+        display: flex
+        align-items: center
+        justify-content: left
+        position: relative
+        padding-left: 20px
+        height: 100px
+        color: #262626
+        font-family: 'ProximaNova-Regular'
+        border-right: 1px solid #f0f0f0
+        border-bottom: 1px solid #f0f0f0
+        span
+            font-size: 18px
+            position: relative
+            font-weight: normal
+            font-style: normal
+            font-stretch: normal
+            font-family: 'ProximaNova-Regular'
+            letter-spacing: 0.2px
+            text-align: left
+            color: #262626
+            z-index: 9
+            padding: 0px 10px 0px 0px
+        input
+            display: none
+            height: 20px
+            font-size: 18px
+            position: relative
+            font-weight: normal
+            font-family: 'ProximaNova-Regular'
+            font-style: normal
+            font-stretch: normal
+            letter-spacing: 0.2px
+            text-align: left
+            color: #262626
+            border: 1px solid #f0f0f0
+            border-radius: 3px
+    .add-categori-icon
+        display: none
+        width: 14px
+        height: 15px
+        cursor: pointer
+        background: url(/assets/img/closedAddCategori.svg) no-repeat
+        background-size: contain
+        position: absolute
+        top: 44px
+        right: 20px
+        z-index: 1
+    .paint-bucket
+        display: none
+        width: 16.8px
+        height: 16.8px
+        background-color: #5d9789
+        background: url(/assets/img/paint-bucket.svg) no-repeat
+        background-size: contain
+        position: absolute
+        top: 43px
+        right: 56px
+        z-index: 1
+.scroll-fixed-left
+    .datepicker
+        position: fixed
+        top: 50px
+        z-index: 13
+        &:after
+            content: ""
+            position: absolute
+            display: block
+            width: 350px
+            height: 20px
+            bottom: -20px
+            left: 0px
+            opacity: .04
+            background-image: linear-gradient(to top, rgba(238, 238, 238, 0), #000000)
+    .labels__item
+       /* height: 75px !important*/
+    .giagramm-fon
+        /*display: none*/
+    .labels
+        position: fixed
+        top: 100px
+        z-index: 13
+        
+    .labels-body
+        span
+            font-size: 26px !important
+        p   
+            font-size: 11px !important
+    .table_control-up
+        position: fixed
+        top: 325px
+        z-index: 12
+        border-bottom: 1px solid #f0f0f0
+        .info-expenses
+            display: none
+    .table_control
+        margin: 325px 0px 0px 0px
+
+.giagramm-fon-min
+    width: 187px
+.giagramm-fon-full
+    width: 360px
+.scroll-fixed-left-without-graph
+    .table_control-up
+        position: fixed
+        top: 325px
+        height: 50px !important
+        z-index: 13
+        border-bottom: 1px solid #f0f0f0
+        .table_control-edit-pannel
+            margin: 0px 0px 7px 0px !important
+        .info-expenses
+            display: none
+    .table_control-up
+        top: 100px
+    .table_control
+        margin: 100px 0px 0px 0px
+.scroll-fixed-left-without-graph-start
+    
+    .table_control-up
+        position: relative
+        top: 325px
+        height: 50px !important
+        z-index: 13
+        border-bottom: 1px solid #f0f0f0
+        .info-expenses
+            display: none
+    .table_control-up
+        top: 0px
+    .table_control
+        margin: 0px 0px 0px 0px
+    
+.table_control-edit-pannel-fon
+    display: block
+    width: 350px
+    height: 36px
+.table_control-up-first
+    display: flex
+    width: 350px
+    height: 100px
+    align-items: center
+.have-short-title 
+    .titleFull
+        display: none 
+    .titleShort 
+        display: inline-block 
+    &:hover
+        .titleFull
+            display: inline-block !important
+        .titleShort
+            display: none !important

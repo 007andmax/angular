@@ -1,0 +1,56 @@
+*,
+*::before,
+*::after 
+  box-sizing: border-box
+
+
+
+/* context menu */
+
+.context-menu 
+  display: none
+  position: absolute
+  z-index: 999
+  padding: 12px 0
+  width: 150px
+  background-color: #fff
+  background-clip: padding-box
+  border: 1px solid rgba(0,0,0,.15)
+  border-radius: 4px
+  box-shadow: 0 6px 12px rgba(0,0,0,.175)
+
+
+.context-menu--active 
+  display: block
+
+
+.context-menu__items 
+  list-style: none
+  margin: 0
+  padding: 0
+  
+
+
+.context-menu__item 
+  display: block
+  margin-bottom: 4px
+  &:last-child
+    margin-bottom: 0
+
+
+.context-menu__link 
+  display: block
+  padding: 4px 12px
+  text-decoration: none
+  padding: 3px 20px
+  clear: both
+  font-weight: 400
+  line-height: 1.42857143
+  color: #333
+  white-space: nowrap
+  font-family: ProximaNova-Regular
+  font-size: 13px
+  &:hover
+    background-color: #f7f7f7
+
+  

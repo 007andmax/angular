@@ -1,0 +1,158 @@
+.sales {
+  position: fixed;
+  top: calc(50% - 230px);
+  right: 50px;
+  left: 50px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  border: solid 1px #979797;
+  z-index: 998;
+  padding: 20px;
+}
+
+.sales .sales-closed {
+  display: block;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  background-color: #d8d8d8;
+  -webkit-mask: url(/assets/img/closedAddCategori.svg) no-repeat;
+  mask: url(/assets/img/closedAddCategori.svg) no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  cursor: pointer;
+}
+
+.sales h3 {
+  font-size: 36px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  margin: 0px;
+  text-align: center;
+  color: #262626;
+  font-family: 'ProximaNova-Regular';
+}
+
+.sales .sales-body {
+  display: block;
+  width: 100%;
+  height: calc(100% - 100px);
+  border-top: 2px solid  #ededed;
+  padding: 10px 0px 0px 0px;
+  margin: 10px 0px;
+  position: relative;
+}
+
+.sales .sales-body h6 {
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  margin: 0px 0px 20px 0px;
+  text-align: center;
+  color: #262626;
+  font-family: 'ProximaNova-Regular';
+}
+
+.sales .sales-body .sales-item-value {
+  margin: 0px 0px 10px 0px;
+}
+
+.sales .sales-body .sales-item-value p {
+  display: inline-block;
+  min-width: 10px;
+  height: auto;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  margin: 0px;
+  text-align: left;
+  color: #262626;
+  font-family: 'ProximaNova-Regular';
+  vertical-align: middle;
+}
+
+.sales .sales-body .sales-item-value input {
+  height: 40px;
+  font-family: ProximaNova-Regular;
+  border: 1px solid #ededed;
+  font-size: 13px;
+  padding: 0px 10px 0px 20px;
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+}
+
+.sales select {
+  height: 40px;
+  font-family: ProximaNova-Regular;
+  border: 1px solid #ededed;
+  font-size: 13px;
+  padding: 0px 20px;
+  background-color: #ffffff;
+}
+
+.sales .save-sales {
+  display: block;
+  width: 70px;
+  height: auto;
+  margin: 0px auto;
+  font-family: ProximaNova-SemiBold;
+  border-radius: 3px;
+  background-color: #f9ab62;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  font-family: Oswald;
+  border: 1px solid #ffffff;
+  font-size: 11px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 36px;
+  letter-spacing: 0.7px;
+  text-align: center;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.sales .save-sales:hover {
+  background-color: #f38c2c;
+}
+
+.preloader-mini-fon, .preloader-body-mini-fon {
+  display: none;
+  background-color: #ffffff;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  position: absolute;
+  z-index: 997;
+}
+
+.preloader-mini, .preloader-body-mini {
+  display: none;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  position: absolute;
+  top: calc(50% - 60px);
+  left: calc(50% - 60px);
+  z-index: 998;
+}
+/*# sourceMappingURL=sales-objectives.component.css.map */

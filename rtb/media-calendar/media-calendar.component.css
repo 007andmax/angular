@@ -1,0 +1,1149 @@
+.media-fon {
+  position: fixed;
+  display: none;
+  top: 100px;
+  right: 50px;
+  left: 50px;
+  bottom: 50px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  border: solid 1px #979797;
+  z-index: 998;
+  padding: 20px;
+}
+
+.media-fon .media-fon-closed {
+  display: block;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  background-color: #d8d8d8;
+  -webkit-mask: url(/assets/img/closedAddCategori.svg) no-repeat;
+  mask: url(/assets/img/closedAddCategori.svg) no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  cursor: pointer;
+}
+
+.media-fon h3 {
+  font-size: 36px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  margin: 0px;
+  text-align: center;
+  color: #262626;
+  font-family: 'ProximaNova-Regular';
+}
+
+.media-fon .add-product-media {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 40px 0px 20px 0px;
+}
+
+.media-fon .add-product-media .add-product-body {
+  display: inline-block;
+  min-width: 10px;
+  height: auto;
+  vertical-align: middle;
+}
+
+.media-fon .add-product-media input {
+  height: 40px;
+  font-family: ProximaNova-Regular;
+  border: 1px solid #ededed;
+  font-size: 13px;
+  padding: 0px 10px 0px 20px;
+  display: inline-block;
+  vertical-align: middle;
+  width: 200px;
+}
+
+.media-fon .add-product-media button {
+  display: inline-block;
+  width: 70px;
+  height: auto;
+  margin: 0px 0px 0px 20px;
+  font-family: ProximaNova-SemiBold;
+  border-radius: 3px;
+  background-color: #f9ab62;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  font-family: Oswald;
+  border: 1px solid #ffffff;
+  font-size: 11px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 36px;
+  letter-spacing: 0.7px;
+  text-align: center;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.media-fon .add-product-media button:hover {
+  background-color: #f38c2c;
+}
+
+.media-fon .add-product-media .next-step {
+  width: 110px;
+  float: right;
+  display: none;
+}
+
+.media-fon .add-product-media .back-step, .media-fon .add-product-media .finish-step {
+  width: 90px;
+  display: none;
+}
+
+.media-fon .add-product-media .finish-step {
+  float: right;
+}
+
+.media-fon .expense-body {
+  display: block;
+  width: 100%;
+  border-top: 2px solid #979797;
+  padding: 20px 0px 0px 0px;
+  height: calc(100% - 150px);
+  overflow: auto;
+  position: relative;
+}
+
+.media-fon .expense-body .list-products {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.media-fon .expense-body .products-list {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.media-fon .expense-body .products-list .remove-product {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.media-fon .expense-body .products-list .remove-product button {
+  display: block;
+  width: 120px;
+  height: auto;
+  margin: 0px;
+  font-family: ProximaNova-SemiBold;
+  border-radius: 3px;
+  background-color: #f9ab62;
+  text-align: center;
+  cursor: pointer;
+  font-family: Oswald;
+  border: 1px solid #ffffff;
+  font-size: 11px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 31px;
+  letter-spacing: 0.7px;
+  text-align: center;
+  vertical-align: middle;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.media-fon .expense-body .products-list .remove-product button:hover {
+  background-color: #f38c2c;
+}
+
+.media-fon .expense-body .item-product {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0px 0px 30px 0px;
+}
+
+.media-fon .expense-body .item-product .product-info {
+  display: inline-block;
+  width: 400px;
+  height: auto;
+  vertical-align: top;
+}
+
+.media-fon .expense-body .item-product .product-info h3, .media-fon .expense-body .item-product .product-info p, .media-fon .expense-body .item-product .product-info span {
+  color: #262626;
+  font-family: 'ProximaNova-Regular';
+  text-align: left;
+  margin: 0px 0px 10px 0px;
+  font-size: 16px;
+}
+
+.media-fon .expense-body .item-product .product-info p {
+  font-size: 14px;
+}
+
+.media-fon .expense-body .item-product .product-info span {
+  font-size: 12px;
+  margin: 0px;
+}
+
+.media-fon .expense-body .item-product .product-info .add-compaign-show, .media-fon .expense-body .item-product .product-info .remove-compaign {
+  cursor: pointer;
+  display: inline-block;
+  min-width: 10px;
+  height: auto;
+  vertical-align: middle;
+}
+
+.media-fon .expense-body .item-product .product-info .add-compaign {
+  display: none;
+  width: 100%;
+  height: auto;
+}
+
+.media-fon .expense-body .item-product .product-info .add-compaign .closed-add-compaign {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: #d8d8d8;
+  -webkit-mask: url(/assets/img/closedAddCategori.svg) no-repeat;
+  mask: url(/assets/img/closedAddCategori.svg) no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  cursor: pointer;
+  vertical-align: middle;
+  margin: 0px 0px 0px 10px;
+}
+
+.media-fon .expense-body .item-product .product-info .add-compaign input {
+  height: 35px;
+  font-family: ProximaNova-Regular;
+  border: 1px solid #ededed;
+  font-size: 13px;
+  padding: 0px 10px 0px 20px;
+  display: inline-block;
+  vertical-align: middle;
+  width: 140px;
+}
+
+.media-fon .expense-body .item-product .product-info .add-compaign button {
+  display: inline-block;
+  width: 70px;
+  height: auto;
+  margin: 0px 0px 0px 20px;
+  font-family: ProximaNova-SemiBold;
+  border-radius: 3px;
+  background-color: #f9ab62;
+  text-align: center;
+  cursor: pointer;
+  font-family: Oswald;
+  border: 1px solid #ffffff;
+  font-size: 11px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 31px;
+  letter-spacing: 0.7px;
+  text-align: center;
+  vertical-align: middle;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.media-fon .expense-body .item-product .product-info .add-compaign button:hover {
+  background-color: #f38c2c;
+}
+
+.media-fon .expense-body .product-settings {
+  display: inline-block;
+  min-width: 10px;
+  height: auto;
+  vertical-align: top;
+}
+
+.media-fon .expense-body .product-settings .flightDate {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0px 0px 20px 0px;
+}
+
+.media-fon .expense-body .product-settings .flightDate .flightDate-info {
+  display: inline-block;
+  width: 140px;
+  height: auto;
+  vertical-align: middle;
+}
+
+.media-fon .expense-body .product-settings .flightDate .flightDate-info .current-dates-edit {
+  background-color: #262626;
+  color: #f38c2c;
+  padding: 5px !important;
+}
+
+.media-fon .expense-body .product-settings .flightDate .flightDate-info .dates {
+  padding: 5px 5px 5px 0px;
+  border-radius: 5px;
+}
+
+.media-fon .expense-body .product-settings .flightDate .flightDate-info .head {
+  display: block;
+  height: auto;
+  font-family: ProximaNova-Regular;
+  font-size: 14px;
+  text-align: left;
+  margin: 0px;
+  color: #262626;
+}
+
+.media-fon .expense-body .product-settings .flightDate .flightDate-info p {
+  display: inline-block;
+  min-width: 10px;
+  height: auto;
+  font-family: ProximaNova-Regular;
+  font-size: 14px;
+  text-align: left;
+  margin: 0px;
+  color: #262626;
+}
+
+.media-fon .expense-body .product-settings .flightDate .flightDate-info span {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  vertical-align: middle;
+  background-color: #d8d8d8;
+  -webkit-mask: url(/assets/img/edit/edit.svg) no-repeat;
+  mask: url(/assets/img/edit/edit.svg) no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.media-fon .expense-body .product-settings .flightDate .remove {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: #d8d8d8;
+  -webkit-mask: url(/assets/img/closedAddCategori.svg) no-repeat;
+  mask: url(/assets/img/closedAddCategori.svg) no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  cursor: pointer;
+  margin: 0px 0px 8px 20px;
+  vertical-align: bottom;
+}
+
+.media-fon .expense-body .product-settings .flightDate .budget-info-item {
+  display: inline-block;
+  width: 100px;
+  height: auto;
+  margin: 0px 20px 0px 0px;
+  vertical-align: middle;
+}
+
+.media-fon .expense-body .product-settings .flightDate .budget-info-item p {
+  display: inline-block;
+  min-width: 10px;
+  height: auto;
+  font-family: ProximaNova-Regular;
+  font-size: 14px;
+  text-align: left;
+  margin: 0px;
+  color: #262626;
+}
+
+.media-fon .expense-body .product-settings .flightDate .budget-info-item input {
+  height: 35px;
+  font-family: ProximaNova-Regular;
+  border: 1px solid #ededed;
+  font-size: 13px;
+  padding: 0px 10px 0px 20px;
+  display: inline-block;
+  vertical-align: middle;
+  width: 100px;
+}
+
+.media-fon .expense-body .product-settings .save-flightDate {
+  display: inline-block;
+  width: 70px;
+  height: auto;
+  margin: 0px;
+  font-family: ProximaNova-SemiBold;
+  border-radius: 3px;
+  background-color: #f9ab62;
+  text-align: center;
+  cursor: pointer;
+  font-family: Oswald;
+  border: 1px solid #ffffff;
+  font-size: 11px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 31px;
+  letter-spacing: 0.7px;
+  text-align: center;
+  vertical-align: bottom;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.media-fon .expense-body .product-settings .save-flightDate:hover {
+  background-color: #f38c2c;
+}
+
+.media-fon .expense-body .add-flightDate {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.media-fon .expense-body .add-flightDate button {
+  display: block;
+  width: 120px;
+  height: auto;
+  margin: 0px;
+  font-family: ProximaNova-SemiBold;
+  border-radius: 3px;
+  background-color: #f9ab62;
+  text-align: center;
+  cursor: pointer;
+  font-family: Oswald;
+  border: 1px solid #ffffff;
+  font-size: 11px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 31px;
+  letter-spacing: 0.7px;
+  text-align: center;
+  vertical-align: middle;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.media-fon .expense-body .add-flightDate button:hover {
+  background-color: #f38c2c;
+}
+
+.media-fon .expense-body .remove-flightDate {
+  margin: 0px;
+}
+
+.dealers {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: auto;
+}
+
+.dealers .list-products {
+  display: table-cell !important;
+  width: 400px !important;
+  height: auto;
+  vertical-align: bottom;
+  padding: 75px 0px 0px 0px;
+  position: absolute;
+  top: 1px;
+  left: 0px;
+}
+
+.dealers .list-products p {
+  display: block;
+  width: 400px;
+  height: 35px;
+  font-family: ProximaNova-Regular;
+  font-size: 16px;
+  text-align: left;
+  margin: 0px;
+  line-height: 35px;
+  color: #262626;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.dealers .list-products p:last-child {
+  margin: 0px;
+}
+
+.dealers .list-products span {
+  display: block;
+  width: 100%;
+  height: 35px;
+  font-family: ProximaNova-Regular;
+  font-size: 14px;
+  line-height: 35px;
+  text-align: left;
+  margin: 0px;
+  color: #262626;
+}
+
+.dealers .dealers-list-fon {
+  display: block;
+  width: calc(100%  - 400px);
+  height: auto;
+  overflow: auto;
+  margin-left: 400px;
+}
+
+.dealers .dealers-list {
+  padding: 75px 0px 0px 0px;
+}
+
+.dealers .dealers-list, .dealers .dealers-list-head {
+  display: table-cell;
+  min-width: 10px;
+  height: auto;
+  vertical-align: bottom;
+  position: relative;
+}
+
+.dealers .dealers-list .dealer-item, .dealers .dealers-list-head .dealer-item {
+  display: table-cell;
+  width: 400px;
+  height: auto;
+  border: 1px solid #f0f0f0;
+  position: relative;
+  /*padding: 75px 0px 0px 0px*/
+}
+
+.dealers .dealers-list .dealer-item .dealer-item-head, .dealers .dealers-list-head .dealer-item .dealer-item-head {
+  display: block;
+  width: 100%;
+  height: 70px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.dealers .dealers-list .dealer-item .dealer-item-head h3, .dealers .dealers-list-head .dealer-item .dealer-item-head h3 {
+  font-size: 18px;
+  color: #ffffff;
+  font-family: ProximaNova-SemiBold;
+  margin: 0px;
+  line-height: 80px;
+  text-align: center;
+}
+
+.dealers .dealers-list .dealer-item .dealer-item-body, .dealers .dealers-list-head .dealer-item .dealer-item-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 400px;
+  height: auto;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+.dealers .dealers-list .dealer-item .dealer-item-body .dealer-item-body-title, .dealers .dealers-list-head .dealer-item .dealer-item-body .dealer-item-body-title {
+  display: block;
+  width: 100px;
+  height: auto;
+  border-bottom: 2px solid #f0f0f0;
+  border-right: 2px solid #f0f0f0;
+}
+
+.dealers .dealers-list .dealer-item .dealer-item-body .dealer-item-body-title:nth-child(3), .dealers .dealers-list-head .dealer-item .dealer-item-body .dealer-item-body-title:nth-child(3) {
+  border-right: none;
+}
+
+.dealers .dealers-list .dealer-item .dealer-item-body .dealer-item-body-title p, .dealers .dealers-list-head .dealer-item .dealer-item-body .dealer-item-body-title p {
+  font-size: 14px;
+  font-family: ProximaNova-Regular;
+  text-align: center;
+  margin: 0px;
+  color: #ffffff;
+}
+
+.dealers .dealers-list .dealer-item .dealer-item-body .dealer-item-body-product, .dealers .dealers-list-head .dealer-item .dealer-item-body .dealer-item-body-product {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: auto;
+}
+
+.dealers .dealers-list .dealer-item .dealer-item-body .dealer-item-body-product input, .dealers .dealers-list-head .dealer-item .dealer-item-body .dealer-item-body-product input {
+  height: 35px;
+  font-family: ProximaNova-Regular;
+  border: none;
+  font-size: 13px;
+  padding: 0px 10px 0px 20px;
+  display: table-cell;
+  vertical-align: middle;
+  width: 100px;
+  text-align: center;
+}
+
+.dealers .dealers-list .dealer-item .dealer-item-body .dealer-item-body-product p, .dealers .dealers-list-head .dealer-item .dealer-item-body .dealer-item-body-product p {
+  font-family: ProximaNova-Regular;
+  font-size: 13px;
+  color: #262626;
+  margin: 0px;
+  background-color: #f3f3f3;
+  line-height: 35px;
+  height: 35px;
+  width: 100px;
+  display: table-cell;
+  text-align: center;
+}
+
+.dealers .dealers-list-head {
+  display: block;
+  position: absolute;
+  width: 100%;
+}
+
+.dealers .dealers-list-head .dealer-item {
+  padding: 0px;
+}
+
+.edit-flight-date-modal {
+  display: none;
+  position: absolute;
+  top: 170px;
+  left: 545px;
+  width: 400px;
+  height: 365px;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 20px 35px 0 rgba(0, 0, 0, 0.15);
+          box-shadow: 0 20px 35px 0 rgba(0, 0, 0, 0.15);
+  padding: 0px 0px 25px 0px;
+  z-index: 12;
+}
+
+.edit-flight-date-modal .cursore-modal {
+  display: none;
+  position: absolute;
+  top: 10px;
+  left: -20px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-right: 20px solid #ffffff;
+  border-bottom: 10px solid transparent;
+}
+
+.edit-flight-date-modal .head-edit-flight-date {
+  display: block;
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 0px 0px 0px 25px;
+}
+
+.edit-flight-date-modal .head-edit-flight-date span {
+  display: inline-block;
+  font-family: "ProximaNova-Regular";
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 50px;
+  letter-spacing: 0.2px;
+  text-align: left;
+  color: #404040;
+  width: 10px;
+  height: 50px;
+  vertical-align: middle;
+}
+
+.edit-flight-date-modal .head-edit-flight-date input {
+  display: inline-block;
+  font-family: "ProximaNova-Regular";
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.2px;
+  text-align: left;
+  color: #404040;
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+  height: 48px;
+  width: 250px;
+  vertical-align: middle;
+}
+
+.edit-flight-date-modal .head-edit-flight-date .head-edit-flight-date-left {
+  display: table-cell;
+  width: 309px;
+  height: 50px;
+  border-right: 1px solid #ebebeb;
+}
+
+.edit-flight-date-modal .head-edit-flight-date .head-edit-flight-date-right {
+  display: table-cell;
+  width: 75px;
+  height: 50px;
+  background: url(/assets/img/remove.svg) no-repeat;
+  background-size: 20px;
+  background-position: center;
+  cursor: pointer;
+}
+
+.edit-flight-date-modal .edit-flight-date-weeks {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: 25px 25px 0px 25px;
+}
+
+.edit-flight-date-modal .edit-flight-date-weeks span {
+  display: table-cell;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-family: "ProximaNova-Regular";
+  font-size: 10px;
+  font-weight: norma;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: 0.6px;
+  color: #b3b3b3;
+}
+
+.edit-flight-date-modal .edit-flight-date-days {
+  display: table;
+  width: 351px;
+  height: auto;
+  position: relative;
+  border-top: 1px solid #f0f0f0;
+  border-left: 1px solid #f0f0f0;
+  margin: 0px 0px 25px 0px;
+}
+
+.edit-flight-date-modal .edit-flight-date-days span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 50px;
+  height: 50px;
+  font-family: "ProximaNova-Regular";
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  border-bottom: 1px solid #f0f0f0;
+  border-right: 1px solid #f0f0f0;
+  line-height: 50px;
+  letter-spacing: 0.7px;
+  text-align: center;
+  color: #262626;
+  float: left;
+  cursor: pointer;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.edit-flight-date-modal .edit-flight-date-days span:hover {
+  background-color: #f9ab62;
+  color: #ffffff;
+}
+
+.edit-flight-date-modal .edit-flight-date-days .no-hover {
+  background-color: #ffffff !important;
+}
+
+.edit-flight-date-modal .select-date {
+  background-color: #f38c2c !important;
+  color: #ffffff !important;
+}
+
+.edit-flight-date-modal .select-between {
+  background-color: #f9ab62 !important;
+  color: #ffffff !important;
+}
+
+.edit-flight-date-modal .edit-btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: auto;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0px 25px;
+}
+
+.edit-flight-date-modal .edit-btns .edit-btns-update {
+  display: table-cell;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  background-color: #f9ab62;
+  -webkit-mask: url(/assets/img/edit/reset.svg) no-repeat;
+  mask: url(/assets/img/edit/reset.svg) no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.edit-flight-date-modal .edit-btns .edit-btns-update:hover {
+  background-color: #f38c2c;
+}
+
+.edit-flight-date-modal .edit-btns .edit-btns-apply {
+  display: table-cell;
+  width: 125px;
+  height: 36px;
+  border-radius: 3px;
+  background-color: #f9ab62;
+  text-align: center;
+  cursor: pointer;
+}
+
+.edit-flight-date-modal .edit-btns .edit-btns-apply:hover {
+  background-color: #f38c2c;
+}
+
+.edit-flight-date-modal .edit-btns .edit-btns-apply span {
+  font-family: Oswald;
+  font-size: 11px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 36px;
+  letter-spacing: 0.7px;
+  text-align: center;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.modal-edit-mask {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.preloader-mini-fon {
+  display: none;
+  background-color: #ffffff;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  position: absolute;
+  z-index: 997;
+}
+
+.preloader-mini {
+  display: none;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  position: absolute;
+  top: calc(50% - 60px);
+  left: calc(50% - 60px);
+  z-index: 998;
+}
+
+.dealer-item {
+  display: table-cell;
+  width: 400px;
+  height: auto;
+}
+
+.dealer-item .dealer-item-head {
+  display: block;
+  width: 100%;
+  height: 70px;
+}
+
+.dealer-item .dealer-item-head h3 {
+  font-family: ProximaNova-SemiBold;
+  margin: 0px;
+  line-height: 85px;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: 0.2px;
+  text-align: center;
+  color: #262626;
+}
+
+.dealer-item .dealer-item-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 400px;
+  height: auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.dealer-item .dealer-item-body .dealer-item-body-line {
+  position: relative;
+}
+
+.dealer-item .dealer-item-body .dealer-item-body-line:after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 10px;
+  background-color: #f0f0f0;
+  top: 0px;
+  right: 0px;
+}
+
+.dealer-item .dealer-item-body .dealer-item-body-line:nth-child(2):after, .dealer-item .dealer-item-body .dealer-item-body-line:nth-child(3):after {
+  top: 8px;
+}
+
+.dealer-item .dealer-item-body .dealer-item-body-title {
+  display: table-cell;
+  width: 100px;
+  height: auto;
+}
+
+.dealer-item .dealer-item-body .dealer-item-body-title:nth-child(3) {
+  border-right: none;
+}
+
+.dealer-item .dealer-item-body .dealer-item-body-title p {
+  font-family: ProximaNova-Regular;
+  margin: 0px;
+  font-size: 11px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.2px;
+  text-align: center;
+  color: #a6a6a6;
+}
+
+.dealer-item .dealer-item-body .dealer-item-body-product {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 50px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.dealer-item .dealer-item-body .dealer-item-body-product .dealer-item-fon {
+  display: block;
+  width: 100px;
+  height: 50px;
+  border-right: 1px solid #f0f0f0;
+}
+
+.dealer-item .dealer-item-body .dealer-item-body-product .dealer-item-fon:last-child {
+  border-right: none;
+}
+
+.dealer-item .dealer-item-body .dealer-item-body-product input {
+  height: 50px;
+  font-family: ProximaNova-Regular;
+  border: none;
+  font-size: 13px;
+  padding: 0px 10px 0px 20px;
+  display: table-cell;
+  vertical-align: middle;
+  width: 100px;
+  text-align: center;
+  background-color: transparent;
+}
+
+.dealer-item .dealer-item-body .dealer-item-body-product p {
+  font-family: ProximaNova-Regular;
+  font-size: 13px;
+  color: #262626;
+  margin: 0px;
+  cursor: not-allowed;
+  line-height: 50px;
+  background-color: #f2f2f2;
+  height: 50px;
+  width: 100px;
+  display: table-cell;
+  text-align: center;
+}
+
+.dealer-item .dealer-item-body .dealer-item-body-product .dealer-item-actual-budget p {
+  background-color: #fdf9f9;
+}
+
+.campaigns_line {
+  background-color: #ffffff;
+  position: relative;
+}
+
+.campaigns_line span {
+  display: block;
+  border-left: 4px solid #f38c2c;
+  padding-left: 50px;
+  font-size: 12px;
+  position: relative;
+  height: 50px;
+  font-family: ProximaNova-Regular;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: 0.2px;
+  text-align: left;
+  color: #262626;
+  width: 350px;
+  border-right: 1px solid #f0f0f0;
+  /*&:before
+            position: absolute
+            content: ""
+            left: 0px
+            width: 4px
+            top: 0px
+            height: 50px
+            background-color: #f38c2c*/
+}
+
+.campaigns_line span:after {
+  content: "";
+  position: absolute;
+  top: 24px;
+  left: 28px;
+  width: 10px;
+  height: 1px;
+  background-color: #f38c2c;
+}
+
+.data_line {
+  background-color: #ffffff;
+  border-right: 1px solid #f0f0f0;
+}
+
+tbody tr {
+  -webkit-transition: all .125s ease-in-out;
+  transition: all .125s ease-in-out;
+  background-color: #fdfbfb;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.dealer_head {
+  background-color: #ffffff;
+  border-right: 1px solid #f0f0f0;
+  border-top: 1px solid #f0f0f0;
+}
+
+.dealer_head .dealer-item {
+  height: 98px;
+  border-bottom: 1px solid #f0f0f0;
+  position: relative;
+}
+
+.last-compain {
+  border-bottom: 1px solid #f1b47a;
+}
+
+.last-compain td:first-child {
+  border-bottom: 1px solid #fdcb9c;
+}
+
+.dealerShips-campaigns-line {
+  display: block;
+  position: absolute;
+  width: 4px;
+  top: 0;
+  left: 0px;
+  bottom: 0;
+  background-color: #f38c2c;
+}
+
+.dealerShips-item-up {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 400px;
+  height: 50px;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
+.dealerShips-item-up .dealer-item-fon {
+  display: block;
+  width: 100px;
+  height: 50px;
+  border-right: 1px solid #f0f0f0;
+}
+
+.dealerShips-item-up .dealer-item-fon:last-child {
+  border-right: none;
+}
+
+.product_line_bottom {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.shadow-line {
+  position: absolute;
+  display: block;
+  width: 20px;
+  height: 100%;
+  left: 350px;
+  top: 1px;
+  z-index: 100;
+  opacity: .04;
+  background-image: -webkit-gradient(linear, right top, left top, from(rgba(238, 238, 238, 0)), to(#000000));
+  background-image: linear-gradient(to left, rgba(238, 238, 238, 0), #000000);
+}
+
+.switch-dealer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  top: 10px;
+  left: calc(50% - 40px);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.switch-dealer input {
+  display: inline-block;
+  margin: 0px 10px 0px 0px;
+  vertical-align: middle;
+}
+
+.switch-dealer label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: ProximaNova-Regular;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 0.2px;
+  color: #a6a6a6;
+}
+/*# sourceMappingURL=media-calendar.component.css.map */

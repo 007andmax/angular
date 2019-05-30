@@ -1,0 +1,24 @@
+<div id="preloader"></div>
+<main class="content up-menu">
+  <div class="mask"></div>
+  <div class="main-fon">
+    <up-menu-comp></up-menu-comp>
+    <div class="container page-actions">
+       
+      <router-outlet></router-outlet>
+      <left-menu-comp></left-menu-comp>
+      <right-menu-comp></right-menu-comp>
+      <table-comp></table-comp>
+
+    </div>
+  </div>
+  <div class="footer-body" [ngStyle]="{height :footer.height}">
+    <p>© CLC OneVision. All rights reserved</p>
+  </div>
+</main>
+<media-calendar-comp></media-calendar-comp>
+<confirm-comp></confirm-comp>
+
+
+<sales-objectives-comp></sales-objectives-comp>
+<context-menu-comp></context-menu-comp>
